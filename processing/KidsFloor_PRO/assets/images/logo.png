@@ -1,1 +1,6 @@
 
+PImage logo;
+
+void setup() {
+    logo = loadImage("images/logo.png");
+}
