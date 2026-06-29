@@ -12,9 +12,11 @@ class SmokeParticle{
 
     pos=new PVector(x,y);
 
-    vel=PVector.random2D();
+   float ang=random(TWO_PI);
 
-    vel.mult(random(0.4,2.0));
+  vel=new PVector(cos(ang),sin(ang));
+
+  vel.mult(random(0.2,3.2));
 
     size=random(25,70);
 
