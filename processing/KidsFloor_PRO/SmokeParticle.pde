@@ -48,14 +48,17 @@ class SmokeParticle{
 
   }
 
-  void render(){
+void render() {
 
-    noStroke();
+  noStroke();
 
-    fill(c,alpha);
+  fill(c, alpha * 0.15);
+  ellipse(pos.x, pos.y, size * 2.2, size * 2.2);
 
-    ellipse(pos.x,pos.y,size,size);
+  fill(c, alpha * 0.45);
+  ellipse(pos.x, pos.y, size * 1.5, size * 1.5);
 
-  }
+  fill(c, alpha);
+  ellipse(pos.x, pos.y, size, size);
 
 }
