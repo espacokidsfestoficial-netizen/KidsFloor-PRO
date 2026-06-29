@@ -39,16 +39,14 @@ life-=1.2;
 
 }
 
-void render(){
+void render() {
 
   noStroke();
 
   fill(80,170,255,life*0.25);
-
-  circle(position.x,position.y,size*4);
+  circle(position.x, position.y, size*4);
 
   fill(120,220,255,life);
-
-  circle(position.x,position.y,size);
+  circle(position.x, position.y, size);
 
 }
