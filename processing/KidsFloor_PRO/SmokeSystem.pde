@@ -50,6 +50,8 @@ for(int i=0;i<amount;i++)
 
     blendMode(ADD);
 
+    noStroke();
+
     for(SmokeParticle p:particles){
 
       p.render();
