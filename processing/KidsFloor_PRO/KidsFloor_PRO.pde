@@ -28,6 +28,8 @@ void setup() {
 
   surface.setTitle("KidsFloor PRO");
 
+  surface.setResizable(true);
+
   sceneManager = new SceneManager();
 
 }
