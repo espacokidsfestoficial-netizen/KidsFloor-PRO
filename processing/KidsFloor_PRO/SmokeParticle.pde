@@ -14,11 +14,11 @@ class SmokeParticle{
 
    float ang=random(TWO_PI);
 
-  vel=new PVector(cos(ang),sin(ang));
+   vel=new PVector(cos(ang),sin(ang));
 
-  vel.mult(random(0.2,3.2));
+   vel.mult(random(0.2,3.2));
 
-    size=random(25,70);
+   size=random(20,55);
 
     alpha=255;
 
@@ -36,9 +36,9 @@ class SmokeParticle{
 
     vel.mult(0.985);
 
-    alpha-=2.5;
+    alpha-=random(1.5,3.5);
 
-    size+=0.30;
+    size+=0.55;
 
   }
 
