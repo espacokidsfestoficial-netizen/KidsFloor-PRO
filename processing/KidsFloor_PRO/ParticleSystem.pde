@@ -1,44 +1,39 @@
+class ParticleSystem {
 
-class ParticleSystem{
+  ArrayList<Particle> particles;
 
-ArrayList<Particle> particles;
+  ParticleSystem() {
+    particles = new ArrayList<Particle>();
+  }
 
-ParticleSystem(){
+  void update() {
 
-particles=new ArrayList<Particle>();
+    // Cria 3 partículas por frame
+    for (int i = 0; i < 3; i++) {
+      particles.add(new Particle(random(width), random(height)));
+    }
 
-}
+    // Atualiza partículas
+    for (int i = particles.size() - 1; i >= 0; i--) {
 
-void update(){
+      Particle p = particles.get(i);
 
-for(int i=0;i<3;i++){
+      p.update();
 
-    particles.add(
+      if (p.dead()) {
+        particles.remove(i);
+      }
+    }
+  }
 
-      new Particle(
+  void render() {
 
-        random(width),
+    blendMode(ADD);
 
-        random(height)
+    for (Particle p : particles) {
+      p.render();
+    }
 
-      )
-
-    );
-
-}
-
-void render(){
-
-blendMode(ADD);
-
-for(Particle p:particles){
-
-p.render();
-
-}
-
-blendMode(BLEND);
-
-}
-
+    blendMode(BLEND);
+  }
 }
