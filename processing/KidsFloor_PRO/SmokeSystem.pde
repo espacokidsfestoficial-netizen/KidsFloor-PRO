@@ -10,7 +10,13 @@ class SmokeSystem{
 
   void emit(float x,float y){
 
-    for(int i=0;i<5;i++){
+    int amount=int(map(dist(mouseX,mouseY,pmouseX,pmouseY),
+0,
+40,
+3,
+12));
+
+for(int i=0;i<amount;i++)
 
       particles.add(
 
