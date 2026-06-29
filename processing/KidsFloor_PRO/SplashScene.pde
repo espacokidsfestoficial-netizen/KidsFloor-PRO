@@ -1,54 +1,59 @@
+class SplashScene {
 
-class SplashScene{
+  ParticleSystem particles;
 
-ParticleSystem particles;
+  PImage logo;
 
-float alpha=0;
+  float alpha = 0;
 
-boolean fade=true;
+  float logoScale = 0.75;
 
-SplashScene(){
+  SplashScene() {
 
-particles=new ParticleSystem();
+    particles = new ParticleSystem();
 
-}
+    logo = loadImage("images/logo.png");
 
-void update(){
+  }
 
-particles.update();
+  void update() {
 
-if(fade){
+    particles.update();
 
-alpha+=0.4;
+    alpha = min(alpha + 1.4,255);
 
-if(alpha>255){
+    logoScale = lerp(logoScale,1.0,0.02);
 
-alpha=255;
+  }
 
-}
+  void render() {
 
-}
+    background(5,8,18);
 
-}
+    particles.render();
 
-void render(){
+    pushMatrix();
 
-background(0);
+    imageMode(CENTER);
 
-particles.render();
+    tint(255,alpha);
 
-fill(255,alpha);
+    translate(width/2,height/2);
 
-textAlign(CENTER,CENTER);
+    scale(logoScale);
 
-textSize(58);
+    image(logo,0,0);
 
-text("Espaço Kids Fest",width/2,height/2);
+    popMatrix();
 
-textSize(22);
+    fill(255,alpha);
 
-text("Interactive Floor System",width/2,height/2+55);
+    textAlign(CENTER);
 
-}
+    textSize(22);
+
+    text("Pise em qualquer lugar para começar",width/2,height-80);
+
+  }
 
 }
