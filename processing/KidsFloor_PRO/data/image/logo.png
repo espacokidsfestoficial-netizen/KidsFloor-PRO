@@ -1,1 +1,9 @@
 
+if (logo != null) {
+  image(logo, 0, 0);
+} else {
+  fill(255, 0, 0);
+  textAlign(CENTER, CENTER);
+  textSize(24);
+  text("ERRO: logo.png não encontrado", 0, 0);
+}
