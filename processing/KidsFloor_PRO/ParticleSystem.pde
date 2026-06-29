@@ -11,21 +11,19 @@ particles=new ArrayList<Particle>();
 
 void update(){
 
-particles.add(new Particle(random(width),random(height)));
+for(int i=0;i<3;i++){
 
-for(int i=particles.size()-1;i>=0;i--){
+    particles.add(
 
-Particle p=particles.get(i);
+      new Particle(
 
-p.update();
+        random(width),
 
-if(p.dead()){
+        random(height)
 
-particles.remove(i);
+      )
 
-}
-
-}
+    );
 
 }
 
