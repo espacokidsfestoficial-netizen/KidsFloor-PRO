@@ -50,3 +50,5 @@ void render() {
   circle(position.x, position.y, size);
 
 }
+
+}
