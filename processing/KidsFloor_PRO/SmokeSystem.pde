@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 class SmokeSystem {
 
   ArrayList<SmokeParticle> particles;
@@ -18,11 +20,11 @@ class SmokeSystem {
       12
     ));
 
+    amount = constrain(amount, 3, 12);
+
     for (int i = 0; i < amount; i++) {
 
-      particles.add(
-        new SmokeParticle(x, y)
-      );
+      particles.add(new SmokeParticle(x, y));
 
     }
 
@@ -30,7 +32,7 @@ class SmokeSystem {
 
   void update() {
 
-    for (int i = particles.size()-1; i >= 0; i--) {
+    for (int i = particles.size() - 1; i >= 0; i--) {
 
       SmokeParticle p = particles.get(i);
 
@@ -49,8 +51,6 @@ class SmokeSystem {
   void render() {
 
     blendMode(ADD);
-
-    noStroke();
 
     for (SmokeParticle p : particles) {
 
