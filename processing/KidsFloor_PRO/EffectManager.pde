@@ -135,11 +135,12 @@ case GameManager.TIC_TAC_TOE:
     textAlign(LEFT, TOP);
     textSize(18);
 
-    text("1 Água", 20, 20);
-    text("2 Fogo", 20, 45);
-    text("3 Água + Fogo", 20, 70);
-    text("4 Estrelas (em breve)", 20, 95);
-    text("5 Galáxia (em breve)", 20, 120);
+text("1 Água",20,20);
+text("2 Fogo",20,45);
+text("3 Água + Fogo",20,70);
+text("4 Estrelas",20,95);
+text("5 Galáxia",20,120);
+text("6 Jogo da Velha",20,145);
 
   }
 
