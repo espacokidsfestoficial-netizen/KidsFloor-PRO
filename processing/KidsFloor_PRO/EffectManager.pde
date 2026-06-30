@@ -1,23 +1,37 @@
-class EffectManager{
+class EffectManager {
 
   SmokeSystem smoke;
+  WaterSystem water;
 
-  EffectManager(){
+  EffectManager() {
 
-    smoke=new SmokeSystem();
+    smoke = new SmokeSystem();
+    water = new WaterSystem();
 
   }
 
-  void update(){
+  void update() {
 
-    smoke.emit(mouseX,mouseY);
+    if (sceneManager == null) return;
+    if (sceneManager.engine == null) return;
+
+    FootTracker foot = sceneManager.engine.getTracker();
+
+    float x = foot.getPosition().x;
+    float y = foot.getPosition().y;
+    float speed = foot.getSpeed();
+
+    smoke.emit(x, y, speed);
+    water.emit(x, y, speed);
 
     smoke.update();
+    water.update();
 
   }
 
-  void render(){
+  void render() {
 
+    water.render();
     smoke.render();
 
   }
