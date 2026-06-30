@@ -36,8 +36,4 @@ class LightSystem {
 
     }
 
-    blendMode(BLEND);
-
-  }
-
 }
