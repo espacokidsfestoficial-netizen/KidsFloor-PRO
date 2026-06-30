@@ -2,80 +2,112 @@ class Fish {
 
   PVector pos;
   PVector vel;
+  PVector acc;
 
-  float size;
-  color body;
+  float bodyLength;
+  float bodyHeight;
+
+  float tailAngle = 0;
+  float tailSpeed;
+
+  color bodyColor;
 
   Fish() {
 
     pos = new PVector(random(width), random(height));
 
     vel = PVector.random2D();
-    vel.mult(random(1.0, 2.5));
 
-    size = random(25, 45);
+    vel.mult(random(1.2,2.5));
 
-    body = color(
+    acc = new PVector();
+
+    bodyLength = random(35,60);
+    bodyHeight = bodyLength*0.45;
+
+    tailSpeed=random(0.15,0.28);
+
+    bodyColor=color(
       random(80,255),
       random(80,255),
-      random(80,255)
+      random(120,255)
     );
 
   }
 
-  void update(PVector foot) {
+  void update(PVector foot){
 
-    float d = dist(pos.x, pos.y, foot.x, foot.y);
+    float d=PVector.dist(pos,foot);
 
-    if (d < 180) {
+    if(d<180){
 
-      PVector flee = PVector.sub(pos, foot);
+      PVector flee=PVector.sub(pos,foot);
 
       flee.normalize();
 
-      flee.mult(0.6);
+      flee.mult(map(d,0,180,0.8,0.05));
 
-      vel.add(flee);
+      acc.add(flee);
 
     }
+
+    if(random(1)<0.02){
+
+      PVector wander=PVector.random2D();
+
+      wander.mult(0.4);
+
+      acc.add(wander);
+
+    }
+
+    vel.add(acc);
 
     vel.limit(3);
 
     pos.add(vel);
 
-    vel.mult(0.98);
+    acc.mult(0);
 
-    if (pos.x < -60) pos.x = width + 60;
-    if (pos.x > width + 60) pos.x = -60;
+    tailAngle+=tailSpeed;
 
-    if (pos.y < -60) pos.y = height + 60;
-    if (pos.y > height + 60) pos.y = -60;
+    if(pos.x<-80) pos.x=width+80;
+    if(pos.x>width+80) pos.x=-80;
+
+    if(pos.y<-80) pos.y=height+80;
+    if(pos.y>height+80) pos.y=-80;
 
   }
 
-  void render() {
+  void render(){
 
     pushMatrix();
 
-    translate(pos.x, pos.y);
+    translate(pos.x,pos.y);
 
-    rotate(atan2(vel.y, vel.x));
+    rotate(vel.heading());
 
     noStroke();
 
-    fill(body);
+    fill(bodyColor);
 
-    ellipse(0, 0, size, size * 0.55);
+    ellipse(0,0,bodyLength,bodyHeight);
+
+    float swing=sin(tailAngle)*12;
 
     triangle(
-      -size * 0.5, 0,
-      -size, -size * 0.25,
-      -size, size * 0.25
+      -bodyLength*0.45,0,
+      -bodyLength*0.95,-bodyHeight*0.5+swing,
+      -bodyLength*0.95, bodyHeight*0.5+swing
     );
 
     fill(255);
 
-    circle(size * 0.2, -3, 4);
+    circle(bodyLength*0.22,-4,5);
+
+    fill(0);
+
+    circle(bodyLength*0.22,-4,2);
 
     popMatrix();
 
