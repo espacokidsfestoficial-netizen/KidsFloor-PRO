@@ -1,5 +1,6 @@
 class EffectManager {
 
+  StarSystem stars;
   SmokeSystem smoke;
   WaterSystem water;
   SplashSystem splash;
@@ -8,6 +9,7 @@ class EffectManager {
 
   EffectManager() {
 
+    stars = new StarSystem();
     smoke = new SmokeSystem();
     water = new WaterSystem();
     splash = new SplashSystem();
@@ -53,7 +55,7 @@ class EffectManager {
 
     case FloorModeManager.STARS:
 
-      // Próxima Sprint
+      stars.emit(x, y, speed);
 
       break;
 
@@ -68,6 +70,7 @@ class EffectManager {
     smoke.update();
     water.update();
     splash.update();
+    stars.update();
 
   }
 
@@ -95,7 +98,9 @@ class EffectManager {
 
     case FloorModeManager.STARS:
 
-      break;
+    stars.render();
+
+    break;
 
     case FloorModeManager.GALAXY:
 
