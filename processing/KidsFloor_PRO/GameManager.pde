@@ -1,59 +1,28 @@
 class GameManager {
 
-  static final int WATER = 0;
-  static final int FIRE = 1;
-  static final int WATER_FIRE = 2;
-  static final int STARS = 3;
-  static final int GALAXY = 4;
-  static final int TIC_TAC_TOE = 5;
+  ArrayList<InteractiveGame> games;
 
-  int currentGame = WATER;
-
-  InteractiveGame waterGame;
-  InteractiveGame ticTacToe;
+  int currentGame = 0;
 
   GameManager() {
 
-    waterGame = new WaterGame();
-    ticTacToe = new TicTacToeGame();
+    games = new ArrayList<InteractiveGame>();
+
+    // Ordem igual ao Menu
+    games.add(new WaterGame());        // 0
+    games.add(new FireGame());         // 1
+    games.add(new WaterFireGame());    // 2
+    games.add(new StarsGame());        // 3
+    games.add(new GalaxyGame());       // 4
+    games.add(new TicTacToeGame());    // 5
 
   }
 
-  void update() {
+  void setGame(int index) {
 
-    if (keyPressed) {
+    if (index >= 0 && index < games.size()) {
 
-      switch(key) {
-
-      case '1':
-        currentGame = WATER;
-        break;
-
-      case '6':
-        currentGame = TIC_TAC_TOE;
-        break;
-
-      }
-
-    }
-
-    InteractiveGame g = getCurrentGame();
-
-    if (g != null) {
-
-      g.update();
-
-    }
-
-  }
-
-  void render() {
-
-    InteractiveGame g = getCurrentGame();
-
-    if (g != null) {
-
-      g.render();
+      currentGame = index;
 
     }
 
@@ -61,19 +30,19 @@ class GameManager {
 
   InteractiveGame getCurrentGame() {
 
-    switch(currentGame) {
+    return games.get(currentGame);
 
-    case WATER:
+  }
 
-      return waterGame;
+  void update() {
 
-    case TIC_TAC_TOE:
+    getCurrentGame().update();
 
-      return ticTacToe;
+  }
 
-    }
+  void render() {
 
-    return null;
+    getCurrentGame().render();
 
   }
 
