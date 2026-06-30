@@ -3,6 +3,11 @@ class GameManager {
   ArrayList<InteractiveGame> games;
 
   int currentGame = 0;
+static final int FIRE SPIRIT = 1;
+static final int WATER + FIRE = 2;
+static final int STARTS = 3;
+static final int GALAXY = 4;
+static final int TIC_TAC_TOE = 5;
 static final int AQUARIUM = 6;
 
   GameManager() {
