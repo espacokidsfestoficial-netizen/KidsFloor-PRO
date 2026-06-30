@@ -2,11 +2,13 @@ class EffectManager {
 
   SmokeSystem smoke;
   WaterSystem water;
+  SplashSystem splash;
 
   EffectManager() {
 
     smoke = new SmokeSystem();
     water = new WaterSystem();
+    splash = new SplashSystem();
 
   }
 
@@ -23,15 +25,18 @@ class EffectManager {
 
     smoke.emit(x, y, speed);
     water.emit(x, y, speed);
+    splash.emit(x, y, speed);
 
     smoke.update();
     water.update();
+    splash.update();
 
   }
 
   void render() {
 
     water.render();
+    splash.render();
     smoke.render();
 
   }
