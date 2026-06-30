@@ -1,75 +1,67 @@
 class Engine {
 
-  EffectManager effects;
-  InputManager input;
-  FootTracker tracker;
   Renderer renderer;
+  InputManager input;
   TouchManager touch;
+  FootTracker tracker;
   KinectManager kinect;
+  TuioManager tuio;
 
-  boolean enabled = true;
+  GameManager game;
+
+  EffectManager effects;
 
   Engine() {
 
-    effects = new EffectManager();
-    input = new InputManager();
-    tracker = new FootTracker();
     renderer = new Renderer();
+
+    input = new InputManager();
+
     touch = new TouchManager();
+
+    tracker = new FootTracker();
+
     kinect = new KinectManager();
+
+    tuio = new TuioManager();
+
+    game = new GameManager();
+
+    effects = new EffectManager();
 
   }
 
   void update() {
 
-    if (!enabled) return;
-
     input.update();
+
     touch.update();
+
     kinect.update();
+
+    tuio.update();
+
     tracker.update();
+
     renderer.update();
-    effects.update();
+
+    game.update();
 
   }
 
   void render() {
 
-    if (!enabled) return;
-
     renderer.render();
-    effects.render();
+
+    game.render();
+
     tracker.renderDebug();
-
-  }
-
-  KinectManager getKinect() {
-
-    return kinect;
-
-  }
-
-  TouchManager getTouchManager() {
-
-    return touch;
 
   }
 
   FootTracker getTracker() {
 
     return tracker;
-
-  }
-
-  void enable() {
-
-    enabled = true;
-
-  }
-
-  void disable() {
-
-    enabled = false;
 
   }
 
