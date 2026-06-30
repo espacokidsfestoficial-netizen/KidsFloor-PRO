@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 class LightSystem {
 
   ArrayList<LightRay> rays;
@@ -9,9 +7,7 @@ class LightSystem {
     rays = new ArrayList<LightRay>();
 
     for (int i = 0; i < 6; i++) {
-
       rays.add(new LightRay());
-
     }
 
   }
@@ -19,9 +15,7 @@ class LightSystem {
   void update() {
 
     for (LightRay r : rays) {
-
       r.update();
-
     }
 
   }
@@ -31,9 +25,11 @@ class LightSystem {
     blendMode(ADD);
 
     for (LightRay r : rays) {
-
       r.render();
-
     }
+
+    blendMode(BLEND);
+
+  }
 
 }
