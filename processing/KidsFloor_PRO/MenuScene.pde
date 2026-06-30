@@ -6,7 +6,7 @@ class MenuScene {
     "Water + Fire",
     "Stars",
     "Galaxy",
-    "Tic Tac Toe"
+    "Tic Tac Toe",
     "Aquarium"
   };
 
