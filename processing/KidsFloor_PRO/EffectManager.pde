@@ -6,7 +6,7 @@ class EffectManager {
   SplashSystem splash;
   GalaxySystem galaxy;
 
-  FloorModeManager mode;
+  GameManager game;
 
   EffectManager() {
 
@@ -16,13 +16,13 @@ class EffectManager {
     splash = new SplashSystem();
     galaxy = new GalaxySystem();
 
-    mode = new FloorModeManager();
+    game = new GameManager();
 
   }
 
   void update() {
 
-    mode.update();
+    game.update();
 
     if (sceneManager == null) return;
     if (sceneManager.engine == null) return;
@@ -67,6 +67,11 @@ class EffectManager {
 
   break;
 
+    case GameManager.TIC_TAC_TOE:
+
+  // Próxima Sprint
+
+  break;
     }
 
     smoke.update();
@@ -79,38 +84,51 @@ class EffectManager {
 
   void render() {
 
-    switch(mode.getMode()) {
+    switch(game.getGame()) {
 
-    case FloorModeManager.WATER:
+    case GameManager.WATER:
 
       water.render();
       splash.render();
       break;
 
-    case FloorModeManager.FIRE:
+    case GameManager.FIRE:
 
       smoke.render();
       break;
 
-    case FloorModeManager.WATER_FIRE:
+    case GameManager.WATER_FIRE:
 
       water.render();
       splash.render();
       smoke.render();
       break;
 
-    case FloorModeManager.STARS:
+    case GameManager.STARS:
 
     stars.render();
 
     break;
 
-    case FloorModeManager.GALAXY:
+    case GameManager.GALAXY:
 
     galaxy.render();
 
     break;
 
+case GameManager.TIC_TAC_TOE:
+
+  fill(255);
+
+  textAlign(CENTER);
+
+  textSize(40);
+
+  text("JOGO DA VELHA\nEM DESENVOLVIMENTO",
+       width/2,
+       height/2);
+
+  break;
     }
 
     fill(255);
