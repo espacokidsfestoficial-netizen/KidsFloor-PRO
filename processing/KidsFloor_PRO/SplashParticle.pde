@@ -38,14 +38,16 @@ class SplashParticle {
 
   }
 
-  void render() {
+void render(){
 
-    noStroke();
+  noStroke();
 
-    fill(120, 220, 255, alpha);
+  fill(180,240,255,alpha);
 
-    ellipse(pos.x, pos.y, size, size);
+  ellipse(pos.x,pos.y,size,size);
 
-  }
+  fill(255,alpha*0.25);
+
+  ellipse(pos.x,pos.y,size*2,size*2);
 
 }
