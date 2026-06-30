@@ -5,6 +5,7 @@ class SmokeParticle {
 
   float size;
   float alpha;
+  float grow;
 
   color c;
 
@@ -14,19 +15,32 @@ class SmokeParticle {
 
     float ang = random(TWO_PI);
 
-    vel = new PVector(cos(ang), sin(ang));
+    vel = PVector.fromAngle(ang);
 
-    vel.mult(random(0.2, 3.2));
+    vel.mult(random(0.5, 2.5));
 
-    size = random(20, 55);
+    size = random(10, 22);
+
+    grow = random(0.25, 0.8);
 
     alpha = 255;
 
-    c = color(
-      random(80, 150),
-      random(180, 255),
-      255
-    );
+    float t = random(1);
+
+    if (t < 0.33) {
+
+      c = color(80, 220, 255);
+
+    } else if (t < 0.66) {
+
+      c = color(120, 120, 255);
+
+    } else {
+
+      c = color(180, 80, 255);
+
+    }
+
   }
 
   void update() {
@@ -35,9 +49,12 @@ class SmokeParticle {
 
     vel.mult(0.985);
 
-    alpha -= random(1.5, 3.5);
+    vel.y -= 0.015;
 
-    size += 0.55;
+    size += grow;
+
+    alpha -= 2.8;
+
   }
 
   boolean dead() {
@@ -50,23 +67,18 @@ class SmokeParticle {
 
     noStroke();
 
-    // Halo externo
-    for (int i = 4; i >= 1; i--) {
+    // Glow externo
+    fill(red(c), green(c), blue(c), alpha * 0.08);
+    ellipse(pos.x, pos.y, size * 4.2, size * 4.2);
 
-      float s = size + i * 10;
-
-      fill(c, alpha / (i * 2));
-
-      ellipse(pos.x, pos.y, s, s);
-
-    }
+    // Glow intermediário
+    fill(red(c), green(c), blue(c), alpha * 0.22);
+    ellipse(pos.x, pos.y, size * 2.5, size * 2.5);
 
     // Núcleo
-    fill(c, alpha);
-
+    fill(red(c), green(c), blue(c), alpha);
     ellipse(pos.x, pos.y, size, size);
 
   }
 
-}
 }
