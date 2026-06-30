@@ -6,6 +6,7 @@ class GameManager {
 
 static final int TIC_TAC_TOE = 5;
 static final int AQUARIUM = 6;
+static final int FOREST = 7;
 
   GameManager() {
 
@@ -19,6 +20,7 @@ static final int AQUARIUM = 6;
     games.add(new GalaxyGame());       // 4
     games.add(new TicTacToeGame());    // 5
     games.add(new AquariumGame());     // 6
+    games.add(new ForestGame());       // 7
 
   }
 
