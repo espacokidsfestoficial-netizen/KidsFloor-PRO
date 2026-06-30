@@ -42,16 +42,24 @@ class Bubble{
 
   }
 
-  void render(){
+void render(){
 
-    noFill();
+  noFill();
 
-    strokeWeight(2);
+  strokeWeight(2);
 
-    stroke(180,230,255,alpha);
+  stroke(220,245,255,alpha);
 
-    circle(pos.x,pos.y,radius);
+  circle(pos.x,pos.y,radius);
 
-  }
+  noStroke();
+
+  fill(255,alpha*0.35);
+
+  circle(
+    pos.x-radius*0.18,
+    pos.y-radius*0.18,
+    radius*0.22
+  );
 
 }
