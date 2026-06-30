@@ -1,21 +1,67 @@
 class MenuScene {
 
   String[] games = {
-    "1 - Interactive Water",
-    "2 - Fire Spirit",
-    "3 - Water + Fire",
-    "4 - Stars",
-    "5 - Galaxy",
-    "6 - Tic Tac Toe"
+    "Interactive Water",
+    "Fire Spirit",
+    "Water + Fire",
+    "Stars",
+    "Galaxy",
+    "Tic Tac Toe"
   };
 
+  int selected = 0;
+
+  boolean upPressed = false;
+  boolean downPressed = false;
+  boolean enterPressed = false;
+
   void update() {
+
+    if (keyPressed) {
+
+      if (keyCode == UP && !upPressed) {
+
+        selected--;
+
+        if (selected < 0)
+          selected = games.length - 1;
+
+        upPressed = true;
+      }
+
+      if (keyCode == DOWN && !downPressed) {
+
+        selected++;
+
+        if (selected >= games.length)
+          selected = 0;
+
+        downPressed = true;
+      }
+
+      if ((key == ENTER || key == RETURN) && !enterPressed) {
+
+        sceneManager.scene = 2;
+
+        sceneManager.engine.game.setGame(selected);
+
+        enterPressed = true;
+
+      }
+
+    } else {
+
+      upPressed = false;
+      downPressed = false;
+      enterPressed = false;
+
+    }
 
   }
 
   void render() {
 
-    background(8,12,25);
+    background(8, 12, 25);
 
     fill(255);
 
@@ -23,29 +69,45 @@ class MenuScene {
 
     textSize(54);
 
-    text("KIDSFLOOR PRO", width/2,90);
+    text("KIDSFLOOR PRO", width/2, 90);
 
     textSize(22);
 
-    text("Espaço Kids Fest",width/2,130);
+    text("Espaço Kids Fest", width/2, 130);
 
-    textSize(28);
+    for (int i = 0; i < games.length; i++) {
 
-    for(int i=0;i<games.length;i++){
-
-      float y=220+i*60;
-
-      fill(40,120,220);
+      float y = 220 + i * 65;
 
       rectMode(CENTER);
 
-      rect(width/2,y,420,42,10);
+      if (i == selected) {
+
+        fill(0, 170, 255);
+
+      } else {
+
+        fill(35, 45, 70);
+
+      }
+
+      noStroke();
+
+      rect(width/2, y, 420, 48, 12);
 
       fill(255);
 
-      text(games[i],width/2,y+8);
+      textSize(24);
+
+      text(games[i], width/2, y + 8);
 
     }
+
+    textSize(18);
+
+    fill(180);
+
+    text("↑ ↓  Selecionar   |   ENTER  Abrir", width/2, height - 40);
 
   }
 
