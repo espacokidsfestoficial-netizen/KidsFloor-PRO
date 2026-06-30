@@ -4,6 +4,7 @@ class Engine {
   InputManager input;
   FootTracker tracker;
   Renderer renderer;
+  TouchManager touch;
 
   boolean enabled = true;
 
@@ -13,6 +14,7 @@ class Engine {
     input = new InputManager();
     tracker = new FootTracker();
     renderer = new Renderer();
+    touch = new TouchManager();
 
   }
 
@@ -21,6 +23,7 @@ class Engine {
     if (!enabled) return;
 
     input.update();
+    touch.update();
     tracker.update();
     renderer.update();
     effects.update();
@@ -32,10 +35,14 @@ class Engine {
     if (!enabled) return;
 
     renderer.render();
-
     effects.render();
-
     tracker.renderDebug();
+
+  }
+
+  TouchManager getTouchManager() {
+
+    return touch;
 
   }
 
