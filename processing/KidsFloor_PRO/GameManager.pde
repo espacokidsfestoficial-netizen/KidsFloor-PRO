@@ -6,27 +6,18 @@ class GameManager {
   static final int STARS = 3;
   static final int GALAXY = 4;
   static final int TIC_TAC_TOE = 5;
+
+  int currentGame = WATER;
+
+  InteractiveGame waterGame;
   InteractiveGame ticTacToe;
 
-GameManager() {
+  GameManager() {
 
-  ticTacToe = new TicTacToeGame();
-
-}
-
-InteractiveGame getCurrentGame() {
-
-  if(currentGame == TIC_TAC_TOE){
-
-    return ticTacToe;
+    waterGame = new WaterGame();
+    ticTacToe = new TicTacToeGame();
 
   }
-
-  return null;
-
-}
-
-  int currentGame = WATER_FIRE;
 
   void update() {
 
@@ -38,22 +29,6 @@ InteractiveGame getCurrentGame() {
         currentGame = WATER;
         break;
 
-      case '2':
-        currentGame = FIRE;
-        break;
-
-      case '3':
-        currentGame = WATER_FIRE;
-        break;
-
-      case '4':
-        currentGame = STARS;
-        break;
-
-      case '5':
-        currentGame = GALAXY;
-        break;
-
       case '6':
         currentGame = TIC_TAC_TOE;
         break;
@@ -62,11 +37,43 @@ InteractiveGame getCurrentGame() {
 
     }
 
+    InteractiveGame g = getCurrentGame();
+
+    if (g != null) {
+
+      g.update();
+
+    }
+
   }
 
-  int getGame() {
+  void render() {
 
-    return currentGame;
+    InteractiveGame g = getCurrentGame();
+
+    if (g != null) {
+
+      g.render();
+
+    }
+
+  }
+
+  InteractiveGame getCurrentGame() {
+
+    switch(currentGame) {
+
+    case WATER:
+
+      return waterGame;
+
+    case TIC_TAC_TOE:
+
+      return ticTacToe;
+
+    }
+
+    return null;
 
   }
 
