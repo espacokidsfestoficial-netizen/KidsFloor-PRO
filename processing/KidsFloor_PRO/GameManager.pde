@@ -3,6 +3,7 @@ class GameManager {
   ArrayList<InteractiveGame> games;
 
   int currentGame = 0;
+static final int AQUARIUM = 6;
 
   GameManager() {
 
@@ -15,6 +16,7 @@ class GameManager {
     games.add(new StarsGame());        // 3
     games.add(new GalaxyGame());       // 4
     games.add(new TicTacToeGame());    // 5
+    games.add(new AquariumGame());     // 6
 
   }
 
