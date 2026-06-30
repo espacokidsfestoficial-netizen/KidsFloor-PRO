@@ -7,7 +7,7 @@ class MenuScene {
     "Stars",
     "Galaxy",
     "Tic Tac Toe",
-    "Aquarium"
+    "Aquarium Premium"
   };
 
   int selected = 0;
