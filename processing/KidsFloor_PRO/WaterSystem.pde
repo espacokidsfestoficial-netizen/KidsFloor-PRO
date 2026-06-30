@@ -2,31 +2,43 @@ class WaterSystem {
 
   ArrayList<WaterRipple> ripples;
 
-  WaterSystem() {
+  WaterSystem(){
 
-    ripples = new ArrayList<WaterRipple>();
+    ripples=new ArrayList<WaterRipple>();
 
   }
 
-  void emit(float x, float y, float speed) {
+  void emit(float x,float y,float speed){
 
-    if (frameCount % 2 == 0) {
+    if(speed<0.5) return;
 
-      ripples.add(new WaterRipple(x, y, speed));
+    if(frameCount%2==0){
+
+      ripples.add(
+
+        new WaterRipple(
+
+          x,
+          y,
+          speed
+
+        )
+
+      );
 
     }
 
   }
 
-  void update() {
+  void update(){
 
-    for (int i = ripples.size() - 1; i >= 0; i--) {
+    for(int i=ripples.size()-1;i>=0;i--){
 
-      WaterRipple r = ripples.get(i);
+      WaterRipple r=ripples.get(i);
 
       r.update();
 
-      if (r.dead()) {
+      if(r.dead()){
 
         ripples.remove(i);
 
@@ -36,11 +48,11 @@ class WaterSystem {
 
   }
 
-  void render() {
+  void render(){
 
     blendMode(ADD);
 
-    for (WaterRipple r : ripples) {
+    for(WaterRipple r:ripples){
 
       r.render();
 
