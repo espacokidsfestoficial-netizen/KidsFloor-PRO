@@ -6,6 +6,25 @@ class GameManager {
   static final int STARS = 3;
   static final int GALAXY = 4;
   static final int TIC_TAC_TOE = 5;
+  InteractiveGame ticTacToe;
+
+GameManager() {
+
+  ticTacToe = new TicTacToeGame();
+
+}
+
+InteractiveGame getCurrentGame() {
+
+  if(currentGame == TIC_TAC_TOE){
+
+    return ticTacToe;
+
+  }
+
+  return null;
+
+}
 
   int currentGame = WATER_FIRE;
 
