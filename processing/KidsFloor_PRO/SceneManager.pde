@@ -1,39 +1,36 @@
-class SceneManager{
+class SceneManager {
 
   SplashScene splash;
   MenuScene menu;
 
   Engine engine;
 
-  int scene=0;
+  int scene = 0;
 
-  final int SPLASH=0;
-  final int MENU=1;
+  final int SPLASH = 0;
+  final int MENU = 1;
+  final int GAME = 2;
 
-  SceneManager(){
+  SceneManager() {
 
-    splash=new SplashScene();
-    menu=new MenuScene();
+    splash = new SplashScene();
+    menu = new MenuScene();
 
-    engine=new Engine();
+    engine = new Engine();
 
   }
 
-  void update(){
+  void update() {
 
-    switch(scene){
+    switch(scene) {
 
     case SPLASH:
 
       splash.update();
-
       engine.update();
 
-      if(frameCount>240){
-
-        scene=MENU;
-
-      }
+      if (frameCount > 240)
+        scene = MENU;
 
       break;
 
@@ -41,7 +38,19 @@ class SceneManager{
 
       menu.update();
 
+      break;
+
+    case GAME:
+
       engine.update();
+
+      if (keyPressed && key == ESC) {
+
+        key = 0; // impede o fechamento do Processing
+
+        scene = MENU;
+
+      }
 
       break;
 
@@ -49,22 +58,24 @@ class SceneManager{
 
   }
 
-  void render(){
+  void render() {
 
-    switch(scene){
+    switch(scene) {
 
     case SPLASH:
 
       splash.render();
-
       engine.render();
-
       break;
 
     case MENU:
 
       menu.render();
+      break;
 
+    case GAME:
+
+      engine.render();
       break;
 
     }
