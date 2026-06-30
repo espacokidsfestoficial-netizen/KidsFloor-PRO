@@ -63,7 +63,7 @@ class Fish {
 
     vel.add(acc);
 
-    vel.limit(3);
+    vel.limit(2.6);
 
     pos.add(vel);
 
