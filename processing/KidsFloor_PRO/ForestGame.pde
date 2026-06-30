@@ -39,14 +39,19 @@ class ForestGame extends InteractiveGame {
 
   }
 
-  void nextMole() {
+void nextMole() {
 
-    currentStump = int(random(stumps.length));
+  int next;
 
-    mole.show(stumps[currentStump]);
+  do {
+    next = int(random(stumps.length));
+  } while (next == currentStump);
 
-  }
+  currentStump = next;
 
+  mole.show(stumps[currentStump]);
+
+}
   void update() {
 
     mole.update();
