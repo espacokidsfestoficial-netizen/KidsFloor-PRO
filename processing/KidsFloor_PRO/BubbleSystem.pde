@@ -1,19 +1,18 @@
-class BubbleSystem{
+class BubbleSystem {
 
   ArrayList<Bubble> bubbles;
 
-  BubbleSystem(){
+  BubbleSystem() {
 
-    bubbles=new ArrayList<Bubble>();
+    bubbles = new ArrayList<Bubble>();
 
-    for(int i=0;i<90;i++){
-
+    for (int i = 0; i < 90; i++) {
       bubbles.add(new Bubble());
-
     }
 
   }
 
+   
   void update(){
 
     for(Bubble b:bubbles){
