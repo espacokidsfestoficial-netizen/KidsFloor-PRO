@@ -46,8 +46,11 @@ void render(){
 
   ellipse(pos.x,pos.y,size,size);
 
-  fill(255,alpha*0.25);
+   fill(255,alpha*0.25);
 
   ellipse(pos.x,pos.y,size*2,size*2);
 
+}
+
+}
 }
