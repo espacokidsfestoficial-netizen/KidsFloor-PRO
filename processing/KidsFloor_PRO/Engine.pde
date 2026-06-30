@@ -3,6 +3,7 @@ class Engine {
   EffectManager effects;
   InputManager input;
   FootTracker tracker;
+  Renderer renderer;
 
   boolean enabled = true;
 
@@ -11,6 +12,7 @@ class Engine {
     effects = new EffectManager();
     input = new InputManager();
     tracker = new FootTracker();
+    renderer = new Renderer();
 
   }
 
@@ -20,6 +22,7 @@ class Engine {
 
     input.update();
     tracker.update();
+    renderer.update();
     effects.update();
 
   }
@@ -28,9 +31,10 @@ class Engine {
 
     if (!enabled) return;
 
+    renderer.render();
+
     effects.render();
 
-    // Debug (vamos remover depois)
     tracker.renderDebug();
 
   }
