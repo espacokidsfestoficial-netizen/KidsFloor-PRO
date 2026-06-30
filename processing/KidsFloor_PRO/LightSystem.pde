@@ -19,17 +19,16 @@ class LightSystem {
     }
 
   }
+void render() {
 
-  void render() {
+  blendMode(ADD);
 
-    blendMode(ADD);
-
-    for (LightRay r : rays) {
-      r.render();
-    }
-
-    blendMode(BLEND);
-
+  for (LightRay r : rays) {
+    r.render();
   }
+
+  blendMode(BLEND);
+
+}
 
 }
