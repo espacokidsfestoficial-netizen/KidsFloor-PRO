@@ -8,21 +8,19 @@ class SmokeSystem {
 
   }
 
-  void emit(float x, float y) {
+  void emit(float x, float y, float speed) {
 
-    int amount = int(map(
-      dist(mouseX, mouseY, pmouseX, pmouseY),
-      0,
-      40,
-      3,
-      12
-    ));
+    int amount = int(map(speed, 0, 30, 2, 18));
 
-    amount = constrain(amount, 3, 12);
+    amount = constrain(amount, 2, 18);
 
     for (int i = 0; i < amount; i++) {
 
-      particles.add(new SmokeParticle(x, y));
+      SmokeParticle p = new SmokeParticle(x, y);
+
+      p.vel.mult(random(0.8, 1.8) + speed * 0.08);
+
+      particles.add(p);
 
     }
 
@@ -30,7 +28,7 @@ class SmokeSystem {
 
   void update() {
 
-    for (int i = particles.size() - 1; i >= 0; i--) {
+    for (int i = particles.size()-1; i >= 0; i--) {
 
       SmokeParticle p = particles.get(i);
 
