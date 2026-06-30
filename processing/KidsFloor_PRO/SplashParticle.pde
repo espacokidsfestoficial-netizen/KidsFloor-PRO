@@ -38,19 +38,18 @@ class SplashParticle {
 
   }
 
-void render(){
+void render() {
 
   noStroke();
 
-  fill(180,240,255,alpha);
+  fill(180, 240, 255, alpha);
 
-  ellipse(pos.x,pos.y,size,size);
+  ellipse(pos.x, pos.y, size, size);
 
-   fill(255,alpha*0.25);
+  fill(255, alpha * 0.25);
 
-  ellipse(pos.x,pos.y,size*2,size*2);
+  ellipse(pos.x, pos.y, size * 2, size * 2);
 
-}
+}  // fecha o método
 
-}
-}
+}  // <-- ESTA CHAVE ESTÁ FALTANDO (fecha a classe)
