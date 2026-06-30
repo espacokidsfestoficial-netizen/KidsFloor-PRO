@@ -5,6 +5,7 @@ class Engine {
   FootTracker tracker;
   Renderer renderer;
   TouchManager touch;
+  KinectManager kinect;
 
   boolean enabled = true;
 
@@ -15,6 +16,7 @@ class Engine {
     tracker = new FootTracker();
     renderer = new Renderer();
     touch = new TouchManager();
+    kinect = new KinectManager();
 
   }
 
@@ -24,6 +26,7 @@ class Engine {
 
     input.update();
     touch.update();
+    kinect.update();
     tracker.update();
     renderer.update();
     effects.update();
@@ -37,6 +40,12 @@ class Engine {
     renderer.render();
     effects.render();
     tracker.renderDebug();
+
+  }
+
+  KinectManager getKinect() {
+
+    return kinect;
 
   }
 
