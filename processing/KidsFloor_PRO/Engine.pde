@@ -1,22 +1,55 @@
-class Engine{
+class Engine {
 
   EffectManager effects;
+  InputManager input;
+  FootTracker tracker;
 
-  Engine(){
+  boolean enabled = true;
 
-    effects=new EffectManager();
+  Engine() {
+
+    effects = new EffectManager();
+    input = new InputManager();
+    tracker = new FootTracker();
 
   }
 
-  void update(){
+  void update() {
 
+    if (!enabled) return;
+
+    input.update();
+    tracker.update();
     effects.update();
 
   }
 
-  void render(){
+  void render() {
+
+    if (!enabled) return;
 
     effects.render();
+
+    // Debug (vamos remover depois)
+    tracker.renderDebug();
+
+  }
+
+  FootTracker getTracker() {
+
+    return tracker;
+
+  }
+
+  void enable() {
+
+    enabled = true;
+
+  }
+
+  void disable() {
+
+    enabled = false;
 
   }
 
