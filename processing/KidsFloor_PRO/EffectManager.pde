@@ -118,18 +118,13 @@ class EffectManager {
 
 case GameManager.TIC_TAC_TOE:
 
-  fill(255);
+  if(game.getCurrentGame()!=null){
 
-  textAlign(CENTER);
+    game.getCurrentGame().render();
 
-  textSize(40);
+  }
 
-  text("JOGO DA VELHA\nEM DESENVOLVIMENTO",
-       width/2,
-       height/2);
-
-  break;
-    }
+  break;    }
 
     fill(255);
     textAlign(LEFT, TOP);
