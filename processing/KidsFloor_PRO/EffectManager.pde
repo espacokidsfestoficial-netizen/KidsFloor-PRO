@@ -33,7 +33,7 @@ class EffectManager {
     float y = foot.getPosition().y;
     float speed = foot.getSpeed();
 
-    switch(mode.getMode()) {
+    switch(game.getGame()) {
 
     case FloorModeManager.WATER:
 
