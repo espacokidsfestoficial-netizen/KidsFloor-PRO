@@ -1,15 +1,18 @@
 class MenuScene {
 
-  String[] games = {
-    "Interactive Water",
-    "Fire Spirit",
-    "Water + Fire",
-    "Stars",
-    "Galaxy",
-    "Tic Tac Toe",
-    "Aquarium Premium",
-    "Forest Stomp"
-  };
+ String[] games = {
+
+  "Interactive Water",
+  "Fire Spirit",
+  "Water + Fire",
+  "Stars",
+  "Galaxy",
+  "Tic Tac Toe",
+  "Aquarium Premium",
+  "Forest Stomp",
+  "Math Adventure"
+
+};
 
   int selected = 0;
 
