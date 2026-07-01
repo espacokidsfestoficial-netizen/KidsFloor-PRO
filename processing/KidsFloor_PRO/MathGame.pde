@@ -59,7 +59,7 @@ class MathGame extends InteractiveGame {
 
     for (MathOption op : options) {
 
-      op.scale = lerp(op.scale, 1.0, 0.15);
+      op.animScale = lerp(op.animScale, 1.0, 0.15);
 
     }
 
@@ -69,7 +69,7 @@ class MathGame extends InteractiveGame {
 
         if (op.contains(mouseX, mouseY)) {
 
-          op.scale = 1.18;
+          op.animScale = 1.18;
 
           if (op.value == question.answer) {
 
