@@ -84,7 +84,9 @@ void nextMole() {
 
       if (s.contains(mouseX, mouseY)) {
 
-        score++;
+       score++;
+
+nextMole();
 
             }
 
