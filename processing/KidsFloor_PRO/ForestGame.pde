@@ -93,6 +93,7 @@ nextMole();
     }
 
   }
+  }
 
   void render() {
 
