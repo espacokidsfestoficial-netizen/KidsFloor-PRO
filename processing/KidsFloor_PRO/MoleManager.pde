@@ -1,72 +1,80 @@
 class MoleManager {
 
   TreeStump[] stumps;
-
   Mole mole;
 
-  int current = -1;
+  int[] order = new int[9];
+  int index = 0;
 
-  int last = -1;
-
-  int nextTime = 0;
+  int nextTime;
 
   MoleManager(TreeStump[] s) {
 
     stumps = s;
-
     mole = new Mole();
+
+    shuffleOrder();
 
     spawn();
 
   }
 
-  void spawn() {
+  void shuffleOrder() {
 
-    if (current != -1) {
+    for (int i = 0; i < order.length; i++) {
+      order[i] = i;
+    }
 
-      stumps[current].active = false;
+    for (int i = order.length - 1; i > 0; i--) {
+
+      int j = int(random(i + 1));
+
+      int t = order[i];
+      order[i] = order[j];
+      order[j] = t;
 
     }
 
-    do {
+    index = 0;
 
-      current = int(random(stumps.length));
+  }
 
-    } while (current == last);
+  void spawn() {
 
-    last = current;
+    if (index >= order.length) {
 
-    stumps[current].active = true;
+      shuffleOrder();
 
-    mole.show(stumps[current]);
+    }
+
+    mole.show(stumps[order[index]]);
+
+    index++;
 
     nextTime = millis() + 1800;
 
   }
 
-void update() {
+  void update() {
 
-  mole.update();
+    mole.update();
 
-  if (!mole.visible) {
+    if (!mole.visible) {
 
-    if (millis() > nextTime) {
       spawn();
+
+      return;
+
     }
 
-    return;
+    if (millis() > nextTime) {
+
+      mole.hide();
+
+    }
 
   }
 
-  if (millis() > nextTime) {
-
-    mole.hide();
-
-    nextTime = millis() + 350;
-
-  }
-
-}
   void render() {
 
     mole.render();
@@ -78,11 +86,11 @@ void update() {
     if (!mole.visible)
       return false;
 
-    if (stumps[current].contains(px, py)) {
+    TreeStump s = mole.stump;
+
+    if (s.contains(px, py)) {
 
       mole.hide();
-
-      stumps[current].active = false;
 
       return true;
 
@@ -94,13 +102,13 @@ void update() {
 
   float getX() {
 
-    return stumps[current].x;
+    return mole.stump.x;
 
   }
 
   float getY() {
 
-    return stumps[current].y;
+    return mole.stump.y;
 
   }
 
