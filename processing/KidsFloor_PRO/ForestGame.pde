@@ -2,181 +2,137 @@ class ForestGame extends InteractiveGame {
 
   TreeStump[] stumps;
 
-LeafSystem leaves;
+  LeafSystem leaves;
 
-  int currentStump = -1;
+  MoleManager mole;
 
-  int score = 0;
+  int score;
 
-int gameTime = 180;
-int startTime;
-boolean gameOver = false;
+  int gameTime = 180;
+  int startTime;
 
-  int lastChange = 0;
-boolean canHit = true;
+  boolean gameOver;
 
   ForestGame() {
 
     super("Forest Stomp");
 
-leaves = new LeafSystem();
+    leaves = new LeafSystem();
 
     stumps = new TreeStump[9];
 
-    float spacingX = width / 4.0;
-    float spacingY = height / 4.0;
+    float sx = width / 4.0;
+    float sy = height / 4.0;
 
     int index = 0;
 
- for (int row = 1; row <= 3; row++) {
-  for (int col = 1; col <= 3; col++) {
+    for (int row = 1; row <= 3; row++) {
 
-    stumps[index++] = new TreeStump(
-      col * spacingX,
-      row * spacingY,
-      120
-    );
+      for (int col = 1; col <= 3; col++) {
 
-  }
-}
+        stumps[index++] =
+          new TreeStump(col * sx, row * sy, 120);
 
-startTime = millis();
-
-    nextMole();
-
-    lastChange = millis();
-
-  }
-
-  void nextMole() {
-
-  if (currentStump != -1) {
-    stumps[currentStump].active = false;
-  }
-
-  int next;
-
-  do {
-    next = int(random(stumps.length));
-  } while (next == currentStump);
-
-  currentStump = next;
-
-  stumps[currentStump].active = true;
-
-  lastChange = millis();
-
-  // ===== DEBUG =====
-  println("----------------");
-  println("Atual = " + currentStump);
-
-  for (int i = 0; i < stumps.length; i++) {
-    println(i + " -> " + stumps[i].x + "," + stumps[i].y);
-  }
-}
-  void update() {
-
-if (gameOver) return;
-
-int elapsed = (millis() - startTime) / 1000;
-
-if (elapsed >= gameTime) {
-
-  gameOver = true;
-
-  return;
-
-}
-
-leaves.update();
-
-    // troca sozinho a cada 2 segundos
-
-    if (millis() - lastChange > 2000) {
-
-      nextMole();
+      }
 
     }
 
-    // clique (depois será Kinect)
+    mole = new MoleManager(stumps);
 
-if (mousePressed && canHit) {
-
-  if (stumps[currentStump].contains(mouseX, mouseY)) {
-
-    score++;
-
-    leaves.explode(
-      stumps[currentStump].x,
-      stumps[currentStump].y
-    );
-
-    nextMole();
+    startTime = millis();
 
   }
 
-  canHit = false;
+  void update() {
 
-}
+    if (gameOver)
+      return;
 
-if (!mousePressed) {
-  canHit = true;
-}
-}
+    if ((millis() - startTime) / 1000 >= gameTime) {
+
+      gameOver = true;
+      return;
+
+    }
+
+    mole.update();
+
+    leaves.update();
+
+    if (mousePressed) {
+
+      if (mole.hit(mouseX, mouseY)) {
+
+        score++;
+
+        leaves.explode(
+          mole.getX(),
+          mole.getY()
+        );
+
+      }
+
+    }
+
+  }
+
   void render() {
 
-   if(imgForest!=null){
+    if (imgForest != null) {
 
-  imageMode(CORNER);
+      imageMode(CORNER);
+      image(imgForest, 0, 0, width, height);
 
-  image(imgForest,0,0,width,height);
+    } else {
 
-}else{
+      background(90, 170, 90);
 
-  background(90,170,90);
+    }
 
-}
+    for (TreeStump s : stumps)
+      s.render();
 
-   for (TreeStump s : stumps) {
+    mole.render();
 
-    s.render();
+    leaves.render();
 
-}
+    drawHUD();
 
-leaves.render();
+  }
+
+  void drawHUD() {
 
     fill(255);
 
-    textAlign(LEFT);
-
     textSize(28);
+
+    textAlign(LEFT);
 
     text("Score: " + score, 20, 40);
 
-int remaining = max(0, gameTime - (millis() - startTime) / 1000);
+    textAlign(RIGHT);
 
-textAlign(RIGHT);
-text("Tempo: " + remaining, width - 20, 40);
+    int t = max(0, gameTime - (millis() - startTime) / 1000);
+
+    text("Tempo: " + t, width - 20, 40);
 
     textAlign(CENTER);
 
-    text("FOREST STOMP", width/2, 40);
-if (gameOver) {
+    text("FOREST STOMP", width / 2, 40);
 
-  fill(0, 180);
-  rectMode(CORNER);
-  rect(0, 0, width, height);
+    if (gameOver) {
 
-  fill(255);
+      fill(0, 180);
 
-  textAlign(CENTER);
-  textSize(60);
-  text("FIM DE JOGO", width/2, height/2 - 40);
+      rect(0, 0, width, height);
 
-  textSize(36);
-  text("Pontuação: " + score, width/2, height/2 + 20);
+      fill(255);
 
-}
+      textSize(60);
+
+      text("FIM DE JOGO", width / 2, height / 2);
+
+    }
 
   }
 
