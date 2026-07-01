@@ -13,6 +13,7 @@ int startTime;
 boolean gameOver = false;
 
   int lastChange = 0;
+boolean canHit = true;
 
   ForestGame() {
 
@@ -99,25 +100,27 @@ leaves.update();
 
     // clique (depois será Kinect)
 
-   if (mousePressed && stumps[currentStump].contains(mouseX, mouseY)) {
+if (mousePressed && canHit) {
 
-  score++;
+  if (stumps[currentStump].contains(mouseX, mouseY)) {
 
-  leaves.explode(
-    stumps[currentStump].x,
-    stumps[currentStump].y
-  );
+    score++;
 
-  stumps[currentStump].active = false;
+    leaves.explode(
+      stumps[currentStump].x,
+      stumps[currentStump].y
+    );
 
-  delay(80);
+    nextMole();
 
-  nextMole();
-
-  while (mousePressed) {
-    // espera soltar o clique
   }
 
+  canHit = false;
+
+}
+
+if (!mousePressed) {
+  canHit = true;
 }
 }
   void render() {
