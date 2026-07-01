@@ -21,6 +21,7 @@ static final int FOREST = 7;
     games.add(new TicTacToeGame());    // 5
     games.add(new AquariumGame());     // 6
     games.add(new ForestGame());       // 7
+    games.add(new MathGame());         // 8
 
   }
 
