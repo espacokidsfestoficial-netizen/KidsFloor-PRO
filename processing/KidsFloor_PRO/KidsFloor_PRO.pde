@@ -14,17 +14,19 @@ Espaço Kids Fest
 
 SceneManager sceneManager;
 
+PImage imgForest;
+PImage imgStump;
+PImage imgMole;
+
 void settings() {
 
   size(1280,720,P2D);
 
   smooth(8);
 
+
 }
 
-PImage imgForest;
-PImage imgStump;
-PImage imgMole;
 
 void setup() {
 
