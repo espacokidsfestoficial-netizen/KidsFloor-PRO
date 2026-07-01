@@ -2,6 +2,8 @@ class ForestGame extends InteractiveGame {
 
   TreeStump[] stumps;
 
+LeafSystem leaves;
+
   int currentStump = -1;
 
   int score = 0;
@@ -11,6 +13,8 @@ class ForestGame extends InteractiveGame {
   ForestGame() {
 
     super("Forest Stomp");
+
+leaves = new LeafSystem();
 
     stumps = new TreeStump[9];
 
@@ -63,6 +67,8 @@ class ForestGame extends InteractiveGame {
 
   void update() {
 
+leaves.update();
+
     // troca sozinho a cada 2 segundos
 
     if (millis() - lastChange > 2000) {
@@ -77,9 +83,14 @@ class ForestGame extends InteractiveGame {
 
       if (stumps[currentStump].contains(mouseX, mouseY)) {
 
-        score++;
+      score++;
 
-        nextMole();
+leaves.explode(
+    stumps[currentStump].x,
+    stumps[currentStump].y
+);
+
+nextMole();
 
       }
 
@@ -104,6 +115,8 @@ class ForestGame extends InteractiveGame {
     for (TreeStump s : stumps) {
 
       s.render();
+
+leaves.render();
 
     }
 
