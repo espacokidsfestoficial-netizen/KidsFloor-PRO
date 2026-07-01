@@ -38,6 +38,11 @@ TreeStump(float x, float y, float size, int id) {
 
       ellipse(x, y, size, size * 0.35);
 
+fill(255, 0, 0);
+textAlign(CENTER, CENTER);
+textSize(20);
+text(id, x, y - 70);
+
     }
 
   }
