@@ -31,7 +31,7 @@ class Engine {
 
   }
 
-setup() {
+void setup() {
 
 imgForest = loadImage("forest.png");
 imgStump = loadImage("stump.png");
