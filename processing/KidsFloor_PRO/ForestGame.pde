@@ -12,6 +12,7 @@ class ForestGame extends InteractiveGame {
   int startTime;
 
   boolean gameOver;
+boolean lastMouse = false;
 
   ForestGame() {
 
@@ -59,20 +60,22 @@ class ForestGame extends InteractiveGame {
 
     leaves.update();
 
-    if (mousePressed) {
+    if (mousePressed && !lastMouse) {
 
-      if (mole.hit(mouseX, mouseY)) {
+  if (mole.hit(mouseX, mouseY)) {
 
-        score++;
+    score++;
 
-        leaves.explode(
-          mole.getX(),
-          mole.getY()
-        );
+    leaves.explode(
+      mole.getX(),
+      mole.getY()
+    );
 
-      }
+  }
 
-    }
+}
+
+lastMouse = mousePressed;
 
   }
 
