@@ -16,32 +16,33 @@ class TreeStump {
 
   }
 
-  void render() {
+ void render() {
+
+  imageMode(CENTER);
+
+  if (imgStump != null) {
+
+    image(imgStump, x, y, size, size);
+
+  } else {
 
     ellipseMode(CENTER);
 
-    jump = sin(frameCount * 0.12) * 4;
+    fill(120,75,35);
 
-    // Sombra
-    noStroke();
-    fill(60, 35, 15, 80);
-    ellipse(x, y + 10, size * 1.05, size * 0.30);
-
-    // Tronco
-    fill(120, 75, 35);
-    ellipse(x, y, size, size * 0.35);
-
-    fill(185, 145, 95);
-    ellipse(x, y, size * 0.82, size * 0.22);
-
-    fill(40);
-    ellipse(x, y, size * 0.45, size * 0.10);
-
-    if (active) {
-      drawMole();
-    }
+    ellipse(x,y,size,size*0.35);
 
   }
+
+  jump = sin(frameCount*0.12)*4;
+
+  if(active){
+
+    drawMole();
+
+  }
+
+}
 
   void drawMole() {
 
