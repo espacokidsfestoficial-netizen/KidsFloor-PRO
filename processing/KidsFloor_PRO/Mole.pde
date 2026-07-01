@@ -2,11 +2,13 @@ class Mole {
 
   TreeStump stump;
 
-  float anim = 0;
-
   boolean visible = false;
 
-  int timer = 0;
+  float anim = 0;
+
+  boolean rising = true;
+
+  int bornTime;
 
   Mole() {
   }
@@ -17,15 +19,17 @@ class Mole {
 
     visible = true;
 
+    rising = true;
+
     anim = 0;
 
-    timer = millis();
+    bornTime = millis();
 
   }
 
   void hide() {
 
-    visible = false;
+    rising = false;
 
   }
 
@@ -33,12 +37,24 @@ class Mole {
 
     if (!visible) return;
 
-    if (anim < 1) {
-      anim += 0.08;
-    }
+    if (rising) {
 
-    if (millis() - timer > 2000) {
-      hide();
+      anim += 0.08;
+
+      if (anim > 1) anim = 1;
+
+    } else {
+
+      anim -= 0.08;
+
+      if (anim <= 0) {
+
+        anim = 0;
+
+        visible = false;
+
+      }
+
     }
 
   }
@@ -47,27 +63,32 @@ class Mole {
 
     if (!visible) return;
 
-    float y = lerp(stump.y + 25, stump.y - 10, anim);
+    float jump = lerp(35, -5, anim);
 
-    noStroke();
+    imageMode(CENTER);
 
-    fill(70, 170, 255);
+    if (imgMole != null) {
 
-    ellipse(stump.x, y, 70, 70);
+      image(
+        imgMole,
+        stump.x,
+        stump.y + jump,
+        95,
+        95
+      );
 
-    fill(255);
+    } else {
 
-    ellipse(stump.x - 12, y - 8, 14, 14);
-    ellipse(stump.x + 12, y - 8, 14, 14);
+      fill(70,170,255);
 
-    fill(0);
+      ellipse(
+        stump.x,
+        stump.y + jump,
+        70,
+        70
+      );
 
-    ellipse(stump.x - 12, y - 8, 5, 5);
-    ellipse(stump.x + 12, y - 8, 5, 5);
-
-    fill(30);
-
-    ellipse(stump.x, y + 8, 10, 8);
+    }
 
   }
 
