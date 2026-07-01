@@ -72,6 +72,9 @@ class MathGame extends InteractiveGame {
           if (op.value == question.answer) {
 
             score++;
+if (score == 10) generator.nextLevel();
+
+if (score == 20) generator.nextLevel();
 
           }
 
