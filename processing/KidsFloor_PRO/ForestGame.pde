@@ -8,6 +8,10 @@ LeafSystem leaves;
 
   int score = 0;
 
+int gameTime = 60;
+int startTime;
+boolean gameOver = false;
+
   int lastChange = 0;
 
   ForestGame() {
@@ -32,7 +36,7 @@ leaves = new LeafSystem();
           row * spacingY,
           120
         );
-
+startTime = millis();
       }
 
     }
@@ -66,6 +70,18 @@ leaves = new LeafSystem();
   }
 
   void update() {
+
+if (gameOver) return;
+
+int elapsed = (millis() - startTime) / 1000;
+
+if (elapsed >= gameTime) {
+
+  gameOver = true;
+
+  return;
+
+}
 
 leaves.update();
 
@@ -128,9 +144,30 @@ leaves.render();
 
     text("Score: " + score, 20, 40);
 
+int remaining = max(0, gameTime - (millis() - startTime) / 1000);
+
+textAlign(RIGHT);
+text("Tempo: " + remaining, width - 20, 40);
+
     textAlign(CENTER);
 
     text("FOREST STOMP", width/2, 40);
+if (gameOver) {
+
+  fill(0, 180);
+  rectMode(CORNER);
+  rect(0, 0, width, height);
+
+  fill(255);
+
+  textAlign(CENTER);
+  textSize(60);
+  text("FIM DE JOGO", width/2, height/2 - 40);
+
+  textSize(36);
+  text("Pontuação: " + score, width/2, height/2 + 20);
+
+}
 
   }
 
