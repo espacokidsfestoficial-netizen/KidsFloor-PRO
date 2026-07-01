@@ -49,26 +49,30 @@ startTime = millis();
 
   void nextMole() {
 
-    if (currentStump != -1) {
-      stumps[currentStump].active = false;
-    }
-
-    int next;
-
-    do {
-
-      next = int(random(stumps.length));
-
-    } while (next == currentStump);
-
-    currentStump = next;
-
-    stumps[currentStump].active = true;
-
-    lastChange = millis();
-
+  if (currentStump != -1) {
+    stumps[currentStump].active = false;
   }
 
+  int next;
+
+  do {
+    next = int(random(stumps.length));
+  } while (next == currentStump);
+
+  currentStump = next;
+
+  stumps[currentStump].active = true;
+
+  lastChange = millis();
+
+  // ===== DEBUG =====
+  println("----------------");
+  println("Atual = " + currentStump);
+
+  for (int i = 0; i < stumps.length; i++) {
+    println(i + " -> " + stumps[i].x + "," + stumps[i].y);
+  }
+}
   void update() {
 
 if (gameOver) return;
