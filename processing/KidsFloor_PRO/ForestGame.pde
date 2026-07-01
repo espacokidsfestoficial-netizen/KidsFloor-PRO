@@ -2,9 +2,7 @@ class ForestGame extends InteractiveGame {
 
   TreeStump[] stumps;
 
-  Mole mole;
-
-  int currentStump = -1;
+ int currentStump = -1;
 
   int score = 0;
 
@@ -49,16 +47,32 @@ void nextMole() {
 
   currentStump = next;
 
-  mole.show(stumps[currentStump]);
-
-}
+  }
   void update() {
 
-    mole.update();
+       if (!mole.visible) {
 
-    if (!mole.visible) {
+  void nextMole(){
 
-      nextMole();
+  if(currentStump!=-1){
+
+    stumps[currentStump].active=false;
+
+  }
+
+  int next;
+
+  do{
+
+    next=int(random(9));
+
+  }while(next==currentStump);
+
+  currentStump=next;
+
+  stumps[currentStump].active=true;
+
+}
 
     }
 
@@ -72,9 +86,7 @@ void nextMole() {
 
         score++;
 
-        mole.hide();
-
-      }
+            }
 
     }
 
@@ -90,9 +102,7 @@ void nextMole() {
 
     }
 
-    mole.render();
-
-    drawHUD();
+      drawHUD();
 
   }
 
