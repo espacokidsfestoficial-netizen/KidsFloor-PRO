@@ -8,7 +8,7 @@ LeafSystem leaves;
 
   int score = 0;
 
-int gameTime = 180;
+int gameTime = 60;
 int startTime;
 boolean gameOver = false;
 
