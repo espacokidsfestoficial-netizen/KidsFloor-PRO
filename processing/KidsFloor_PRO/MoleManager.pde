@@ -44,26 +44,29 @@ class MoleManager {
 
   }
 
-  void update() {
+void update() {
 
-    mole.update();
+  mole.update();
 
-    if (!mole.visible) {
-
-      spawn();
-
-      return;
-
-    }
+  if (!mole.visible) {
 
     if (millis() > nextTime) {
-
-      mole.hide();
-
+      spawn();
     }
+
+    return;
 
   }
 
+  if (millis() > nextTime) {
+
+    mole.hide();
+
+    nextTime = millis() + 350;
+
+  }
+
+}
   void render() {
 
     mole.render();
