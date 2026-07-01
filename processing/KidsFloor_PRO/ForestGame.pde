@@ -99,25 +99,26 @@ leaves.update();
 
     // clique (depois será Kinect)
 
-    if (mousePressed) {
+   if (mousePressed && stumps[currentStump].contains(mouseX, mouseY)) {
 
-      if (stumps[currentStump].contains(mouseX, mouseY)) {
+  score++;
 
-      score++;
-
-leaves.explode(
+  leaves.explode(
     stumps[currentStump].x,
     stumps[currentStump].y
-);
+  );
 
-nextMole();
+  stumps[currentStump].active = false;
 
-      }
+  delay(80);
 
-    }
+  nextMole();
 
+  while (mousePressed) {
+    // espera soltar o clique
   }
 
+}
   void render() {
 
    if(imgForest!=null){
