@@ -1,73 +1,86 @@
 class TreeStump {
 
-  float x, y;
+  float x;
+  float y;
   float size;
 
   boolean active = false;
 
+  float jump = 0;
+
   TreeStump(float x, float y, float size) {
+
     this.x = x;
     this.y = y;
     this.size = size;
+
   }
 
   void render() {
 
     ellipseMode(CENTER);
 
+    jump = sin(frameCount * 0.12) * 4;
+
+    // Sombra
     noStroke();
+    fill(60, 35, 15, 80);
+    ellipse(x, y + 10, size * 1.05, size * 0.30);
 
-    fill(60,35,15,80);
-    ellipse(x,y+10,size*1.05,size*0.30);
+    // Tronco
+    fill(120, 75, 35);
+    ellipse(x, y, size, size * 0.35);
 
-    fill(120,75,35);
-    ellipse(x,y,size,size*0.35);
-
-    fill(185,145,95);
-    ellipse(x,y,size*0.82,size*0.22);
+    fill(185, 145, 95);
+    ellipse(x, y, size * 0.82, size * 0.22);
 
     fill(40);
-    ellipse(x,y,size*0.45,size*0.10);
+    ellipse(x, y, size * 0.45, size * 0.10);
 
-    if(active){
-
+    if (active) {
       drawMole();
-
     }
 
   }
 
   void drawMole() {
 
-  // Corpo
-  noStroke();
-  fill(90,170,255);
-  ellipse(x,y-18,70,70);
+    noStroke();
 
-  // Barriga
-  fill(140,210,255);
-  ellipse(x,y-8,40,30);
+    // Corpo
+    fill(90, 170, 255);
+    ellipse(x, y - 18 + jump, 70, 70);
 
-  // Olhos
-  fill(255);
-  ellipse(x-14,y-28,14,16);
-  ellipse(x+14,y-28,14,16);
+    // Barriga
+    fill(140, 210, 255);
+    ellipse(x, y - 8 + jump, 40, 30);
 
-  fill(0);
-  ellipse(x-14,y-28,5,5);
-  ellipse(x+14,y-28,5,5);
+    // Olhos
+    fill(255);
+    ellipse(x - 14, y - 28 + jump, 14, 16);
+    ellipse(x + 14, y - 28 + jump, 14, 16);
 
-  // Nariz
-  fill(40);
-  ellipse(x,y-12,10,8);
+    // Pupilas
+    fill(0);
+    ellipse(x - 14, y - 28 + jump, 5, 5);
+    ellipse(x + 14, y - 28 + jump, 5, 5);
 
-  // Dentes
-  fill(255);
-  rectMode(CENTER);
-  rect(x-3,y-2,5,8,2);
-  rect(x+3,y-2,5,8,2);
+    // Nariz
+    fill(40);
+    ellipse(x, y - 12 + jump, 10, 8);
 
-}
+    // Dentes
+    fill(255);
+    rectMode(CENTER);
+    rect(x - 3, y - 2 + jump, 5, 8, 2);
+    rect(x + 3, y - 2 + jump, 5, 8, 2);
+
+  }
+
+  boolean contains(float px, float py) {
+
+    return dist(px, py, x, y) < 45;
+
   }
 
 }
