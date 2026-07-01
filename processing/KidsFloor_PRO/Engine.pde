@@ -6,10 +6,7 @@ class Engine {
   FootTracker tracker;
   KinectManager kinect;
   TuioManager tuio;
-  PImage imgForest;
-  PImage imgStump;
-  PImage imgMole;
-
+  
   GameManager game;
 
   EffectManager effects;
