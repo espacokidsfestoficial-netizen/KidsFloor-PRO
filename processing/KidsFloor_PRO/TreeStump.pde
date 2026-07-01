@@ -1,16 +1,18 @@
 class TreeStump {
 
+int id;
   float x;
   float y;
   float size;
 
   boolean active = false;
 
-  TreeStump(float x, float y, float size) {
+TreeStump(float x, float y, float size, int id) {
 
-    this.x = x;
-    this.y = y;
-    this.size = size;
+  this.x = x;
+  this.y = y;
+  this.size = size;
+  this.id = id;
 
   }
 
