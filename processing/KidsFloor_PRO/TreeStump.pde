@@ -13,6 +13,7 @@ class TreeStump {
     this.x = x;
     this.y = y;
     this.size = size;
+}
 
 boolean contains(float px, float py) {
 
