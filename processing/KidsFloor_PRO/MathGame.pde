@@ -55,30 +55,47 @@ class MathGame extends InteractiveGame {
 
   }
 
-  void update() {
+void update() {
 
-    if (mousePressed && canAnswer) {
+  for (MathOption op : options) {
 
-      for (MathOption op : options) {
+    op.scale = lerp(op.scale, 1.0, 0.15);
 
-        if (op.contains(mouseX, mouseY)) {
+  }
 
-          if (op.value == question.answer) {
+  if (mousePressed && canAnswer) {
 
-            score++;
+    for (MathOption op : options) {
 
-          }
+      if (op.contains(mouseX, mouseY)) {
 
-          nextQuestion();
+        op.scale = 1.18;
 
-          canAnswer = false;
+        if (op.value == question.answer) {
 
-          break;
+          score++;
 
         }
 
+        nextQuestion();
+
+        canAnswer = false;
+
+        break;
+
       }
 
+    }
+
+  }
+
+  if (!mousePressed) {
+
+    canAnswer = true;
+
+  }
+
+}
     }
 
     if (!mousePressed) {
@@ -93,6 +110,19 @@ class MathGame extends InteractiveGame {
 
     background(25,40,80);
 
+// Fundo com degradê simples
+for (int y = 0; y < height; y += 4) {
+
+  stroke(
+    25 + y * 0.03,
+    40 + y * 0.02,
+    80 + y * 0.01
+  );
+
+  line(0, y, width, y);
+
+}
+
     fill(255);
 
     textAlign(CENTER);
@@ -100,6 +130,12 @@ class MathGame extends InteractiveGame {
     textSize(60);
 
     text(question.text, width/2, 120);
+
+fill(220);
+
+textSize(24);
+
+text("Pise na resposta correta!", width/2, 170);
 
     for (MathOption op : options) {
 
@@ -113,7 +149,11 @@ class MathGame extends InteractiveGame {
 
     textSize(30);
 
-    text("Score: "+score,30,40);
+   fill(255);
+
+textSize(34);
+
+text("⭐ " + score, 30, 40);
 
   }
 
