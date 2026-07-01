@@ -48,6 +48,7 @@ class MoleManager {
     }
 
     mole.show(stumps[order[index]]);
+println("Spawn no tronco: " + current);
 
     index++;
 
