@@ -22,40 +22,21 @@ class TreeStump {
 
   }
 
-  void render() {
+void render() {
 
-    imageMode(CENTER);
+  imageMode(CENTER);
 
-    if (imgStump != null) {
+  if (imgStump != null) {
 
-      image(imgStump, x, y, size, size);
+    image(imgStump, x, y, size, size);
 
-    } else {
+  } else {
 
-      ellipseMode(CENTER);
+    ellipseMode(CENTER);
 
-      fill(120, 75, 35);
+    fill(120,75,35);
 
-      ellipse(x, y, size, size * 0.35);
-
-    }
-
-    jump = sin(frameCount * 0.12) * 4;
-
-    if (active) {
-
-      if (imgMole != null) {
-
-        image(imgMole, x, y - 42 + jump, 90, 90);
-
-      } else {
-
-        fill(0, 150, 255);
-        ellipse(x, y - 42 + jump, 70, 70);
-
-      }
-
-    }
+    ellipse(x, y, size, size * 0.35);
 
   }
 
