@@ -27,19 +27,19 @@ leaves = new LeafSystem();
 
     int index = 0;
 
-    for (int row = 1; row <= 3; row++) {
+ for (int row = 1; row <= 3; row++) {
+  for (int col = 1; col <= 3; col++) {
 
-      for (int col = 1; col <= 3; col++) {
+    stumps[index++] = new TreeStump(
+      col * spacingX,
+      row * spacingY,
+      120
+    );
 
-        stumps[index++] = new TreeStump(
-          col * spacingX,
-          row * spacingY,
-          120
-        );
+  }
+}
+
 startTime = millis();
-      }
-
-    }
 
     nextMole();
 
@@ -132,13 +132,13 @@ nextMole();
 
 }
 
-    for (TreeStump s : stumps) {
+   for (TreeStump s : stumps) {
 
-      s.render();
+    s.render();
+
+}
 
 leaves.render();
-
-    }
 
     fill(255);
 
