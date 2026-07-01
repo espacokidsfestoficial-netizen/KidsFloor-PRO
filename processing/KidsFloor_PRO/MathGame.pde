@@ -1,9 +1,7 @@
 class MathGame extends InteractiveGame {
 
   MathGenerator generator;
-
   MathQuestion question;
-
   MathOption[] options;
 
   int score = 0;
@@ -20,10 +18,10 @@ class MathGame extends InteractiveGame {
 
     float y = height * 0.72;
 
-    options[0] = new MathOption(width*0.20, y, 120);
-    options[1] = new MathOption(width*0.40, y, 120);
-    options[2] = new MathOption(width*0.60, y, 120);
-    options[3] = new MathOption(width*0.80, y, 120);
+    options[0] = new MathOption(width * 0.20, y, 120);
+    options[1] = new MathOption(width * 0.40, y, 120);
+    options[2] = new MathOption(width * 0.60, y, 120);
+    options[3] = new MathOption(width * 0.80, y, 120);
 
     nextQuestion();
 
@@ -37,7 +35,7 @@ class MathGame extends InteractiveGame {
 
     options[correct].value = question.answer;
 
-    for (int i=0; i<4; i++) {
+    for (int i = 0; i < 4; i++) {
 
       if (i == correct) continue;
 
@@ -45,7 +43,7 @@ class MathGame extends InteractiveGame {
 
       do {
 
-        v = question.answer + int(random(-4,5));
+        v = question.answer + int(random(-4, 5));
 
       } while (v == question.answer || v < 0);
 
@@ -55,44 +53,38 @@ class MathGame extends InteractiveGame {
 
   }
 
-void update() {
-
-  for (MathOption op : options) {
-
-    op.scale = lerp(op.scale, 1.0, 0.15);
-
+  void update() {
 
     for (MathOption op : options) {
 
-      if (op.contains(mouseX, mouseY)) {
-
-        op.scale = 1.18;
-
-        if (op.value == question.answer) {
-
-          score++;
-
-        }
-
-        nextQuestion();
-
-        canAnswer = false;
-
-        break;
-
-      }
+      op.scale = lerp(op.scale, 1.0, 0.15);
 
     }
 
-  }
+    if (mousePressed && canAnswer) {
 
-  if (!mousePressed) {
+      for (MathOption op : options) {
 
-    canAnswer = true;
+        if (op.contains(mouseX, mouseY)) {
 
-  }
+          op.scale = 1.18;
 
-}
+          if (op.value == question.answer) {
+
+            score++;
+
+          }
+
+          nextQuestion();
+
+          canAnswer = false;
+
+          break;
+
+        }
+
+      }
+
     }
 
     if (!mousePressed) {
@@ -105,20 +97,20 @@ void update() {
 
   void render() {
 
-    background(25,40,80);
+    background(25, 40, 80);
 
-// Fundo com degradê simples
-for (int y = 0; y < height; y += 4) {
+    // Degradê
+    for (int y = 0; y < height; y += 4) {
 
-  stroke(
-    25 + y * 0.03,
-    40 + y * 0.02,
-    80 + y * 0.01
-  );
+      stroke(
+        25 + y * 0.03,
+        40 + y * 0.02,
+        80 + y * 0.01
+      );
 
-  line(0, y, width, y);
+      line(0, y, width, y);
 
-}
+    }
 
     fill(255);
 
@@ -126,13 +118,13 @@ for (int y = 0; y < height; y += 4) {
 
     textSize(60);
 
-    text(question.text, width/2, 120);
+    text(question.text, width / 2, 120);
 
-fill(220);
+    fill(220);
 
-textSize(24);
+    textSize(24);
 
-text("Pise na resposta correta!", width/2, 170);
+    text("Pise na resposta correta!", width / 2, 170);
 
     for (MathOption op : options) {
 
@@ -144,13 +136,9 @@ text("Pise na resposta correta!", width/2, 170);
 
     textAlign(LEFT);
 
-    textSize(30);
+    textSize(34);
 
-   fill(255);
-
-textSize(34);
-
-text("⭐ " + score, 30, 40);
+    text("⭐ " + score, 30, 40);
 
   }
 
