@@ -14,6 +14,12 @@ class TreeStump {
     this.y = y;
     this.size = size;
 
+boolean contains(float px, float py) {
+
+  return dist(px, py, x, y) < size * 0.45;
+
+}
+
   }
 
  void render() {
