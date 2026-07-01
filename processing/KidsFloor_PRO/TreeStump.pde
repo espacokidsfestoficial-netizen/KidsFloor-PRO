@@ -44,43 +44,21 @@ class TreeStump {
 
 }
 
-  void drawMole() {
+ void drawMole(){
 
-    noStroke();
+  imageMode(CENTER);
 
-    // Corpo
-    fill(90, 170, 255);
-    ellipse(x, y - 18 + jump, 70, 70);
+  float py = lerp(y+30,y-18,rise)+jump;
 
-    // Barriga
-    fill(140, 210, 255);
-    ellipse(x, y - 8 + jump, 40, 30);
+  if(imgMole!=null){
 
-    // Olhos
-    fill(255);
-    ellipse(x - 14, y - 28 + jump, 14, 16);
-    ellipse(x + 14, y - 28 + jump, 14, 16);
+    image(imgMole,x,py,90,90);
 
-    // Pupilas
-    fill(0);
-    ellipse(x - 14, y - 28 + jump, 5, 5);
-    ellipse(x + 14, y - 28 + jump, 5, 5);
+  }else{
 
-    // Nariz
-    fill(40);
-    ellipse(x, y - 12 + jump, 10, 8);
+    fill(70,170,255);
 
-    // Dentes
-    fill(255);
-    rectMode(CENTER);
-    rect(x - 3, y - 2 + jump, 5, 8, 2);
-    rect(x + 3, y - 2 + jump, 5, 8, 2);
-
-  }
-
-  boolean contains(float px, float py) {
-
-    return dist(px, py, x, y) < 45;
+    ellipse(x,py,70,70);
 
   }
 
