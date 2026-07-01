@@ -6,6 +6,9 @@ class Engine {
   FootTracker tracker;
   KinectManager kinect;
   TuioManager tuio;
+  PImage imgForest;
+  PImage imgStump;
+  PImage imgMole;
 
   GameManager game;
 
@@ -30,6 +33,14 @@ class Engine {
     effects = new EffectManager();
 
   }
+
+setup() {
+
+imgForest = loadImage("forest.png");
+imgStump = loadImage("stump.png");
+imgMole = loadImage("mole.png");
+
+}
 
   void update() {
 
