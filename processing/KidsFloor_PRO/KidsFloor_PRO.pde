@@ -22,6 +22,10 @@ void settings() {
 
 }
 
+PImage imgForest;
+PImage imgStump;
+PImage imgMole;
+
 void setup() {
 
   frameRate(60);
@@ -32,6 +36,9 @@ void setup() {
 
   sceneManager = new SceneManager();
 
+imgForest = loadImage("forest.png");
+imgStump  = loadImage("stump.png");
+imgMole   = loadImage("mole.png");
 }
 
 void draw() {
