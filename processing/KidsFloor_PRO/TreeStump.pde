@@ -6,8 +6,6 @@ class TreeStump {
 
   boolean active = false;
 
-  float jump = 0;
-
   TreeStump(float x, float y, float size) {
 
     this.x = x;
@@ -22,21 +20,23 @@ class TreeStump {
 
   }
 
-void render() {
+  void render() {
 
-  imageMode(CENTER);
+    imageMode(CENTER);
 
-  if (imgStump != null) {
+    if (imgStump != null) {
 
-    image(imgStump, x, y, size, size);
+      image(imgStump, x, y, size, size);
 
-  } else {
+    } else {
 
-    ellipseMode(CENTER);
+      ellipseMode(CENTER);
 
-    fill(120,75,35);
+      fill(120, 75, 35);
 
-    ellipse(x, y, size, size * 0.35);
+      ellipse(x, y, size, size * 0.35);
+
+    }
 
   }
 
