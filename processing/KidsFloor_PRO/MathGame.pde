@@ -61,9 +61,6 @@ void update() {
 
     op.scale = lerp(op.scale, 1.0, 0.15);
 
-  }
-
-  if (mousePressed && canAnswer) {
 
     for (MathOption op : options) {
 
