@@ -36,30 +36,23 @@ class TreeStump {
 
   jump = sin(frameCount*0.12)*4;
 
-  if(active){
+if (active) {
 
-    drawMole();
+    float jump = sin(frameCount * 0.15) * 4;
 
+    imageMode(CENTER);
+
+    image(
+        imgMole,
+        x,
+        y - 42 + jump,
+        90,
+        90
+    );
+
+}
   }
 
 }
 
- void drawMole(){
-
-  imageMode(CENTER);
-
-  float py = lerp(y+30,y-18,rise)+jump;
-
-  if(imgMole!=null){
-
-    image(imgMole,x,py,90,90);
-
-  }else{
-
-    fill(70,170,255);
-
-    ellipse(x,py,70,70);
-
-  }
-
-}
+ 
