@@ -3,6 +3,7 @@ class MathGame extends InteractiveGame {
   MathGenerator generator;
   MathQuestion question;
   MathOption[] options;
+  MathHUD hud;
 
   int score = 0;
 
@@ -13,6 +14,7 @@ class MathGame extends InteractiveGame {
     super("Math Adventure");
 
     generator = new MathGenerator();
+    hud = new MathHUD();
 
     options = new MathOption[4];
 
@@ -135,14 +137,7 @@ if (score == 20) generator.nextLevel();
 
     }
 
-    fill(255);
-
-    textAlign(LEFT);
-
-    textSize(34);
-
-    text("⭐ " + score, 30, 40);
-
+   hud.render(score, generator.level);
   }
 
 }
