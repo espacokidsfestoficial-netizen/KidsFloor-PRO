@@ -89,7 +89,17 @@ class ForestGame extends InteractiveGame {
 
   void render() {
 
-    background(90,170,90);
+   if(imgForest!=null){
+
+  imageMode(CORNER);
+
+  image(imgForest,0,0,width,height);
+
+}else{
+
+  background(90,170,90);
+
+}
 
     for (TreeStump s : stumps) {
 
