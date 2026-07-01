@@ -6,7 +6,7 @@ class MathOption {
 
   int value;
 
-  float scale = 1;
+ float animScale = 1;
 
   MathOption(float x, float y, float size) {
 
@@ -33,7 +33,7 @@ class MathOption {
 
     translate(x, y);
 
-    scale(scale);
+    scale(animScale);
 
     rectMode(CENTER);
 
