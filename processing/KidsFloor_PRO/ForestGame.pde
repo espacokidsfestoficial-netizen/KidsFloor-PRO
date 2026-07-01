@@ -2,9 +2,11 @@ class ForestGame extends InteractiveGame {
 
   TreeStump[] stumps;
 
- int currentStump = -1;
+  int currentStump = -1;
 
   int score = 0;
+
+  int lastChange = 0;
 
   ForestGame() {
 
@@ -31,91 +33,69 @@ class ForestGame extends InteractiveGame {
 
     }
 
-    mole = new Mole();
-
     nextMole();
 
-  }
-
-void nextMole() {
-
-  int next;
-
-  do {
-    next = int(random(stumps.length));
-  } while (next == currentStump);
-
-  currentStump = next;
+    lastChange = millis();
 
   }
+
+  void nextMole() {
+
+    if (currentStump != -1) {
+      stumps[currentStump].active = false;
+    }
+
+    int next;
+
+    do {
+
+      next = int(random(stumps.length));
+
+    } while (next == currentStump);
+
+    currentStump = next;
+
+    stumps[currentStump].active = true;
+
+    lastChange = millis();
+
+  }
+
   void update() {
 
-       if (!mole.visible) {
+    // troca sozinho a cada 2 segundos
 
-  void nextMole(){
+    if (millis() - lastChange > 2000) {
 
-  if(currentStump!=-1){
-
-    stumps[currentStump].active=false;
-
-  }
-
-  int next;
-
-  do{
-
-    next=int(random(9));
-
-  }while(next==currentStump);
-
-  currentStump=next;
-
-  stumps[currentStump].active=true;
-
-}
+      nextMole();
 
     }
 
-    // Mouse temporário (depois será Kinect)
+    // clique (depois será Kinect)
 
-    if (mousePressed && mole.visible) {
+    if (mousePressed) {
 
-      TreeStump s = stumps[currentStump];
+      if (stumps[currentStump].contains(mouseX, mouseY)) {
 
-      if (s.contains(mouseX, mouseY)) {
+        score++;
 
-       score++;
+        nextMole();
 
-nextMole();
-
-            }
+      }
 
     }
 
-  }
   }
 
   void render() {
 
-    drawBackground();
+    background(90,170,90);
 
     for (TreeStump s : stumps) {
 
       s.render();
 
     }
-
-      drawHUD();
-
-  }
-
-  void drawBackground() {
-
-    background(90, 170, 90);
-
-  }
-
-  void drawHUD() {
 
     fill(255);
 
@@ -127,7 +107,7 @@ nextMole();
 
     textAlign(CENTER);
 
-    text("FOREST STOMP", width / 2, 40);
+    text("FOREST STOMP", width/2, 40);
 
   }
 
