@@ -31,8 +31,8 @@ boolean lastMouse = false;
 
       for (int col = 1; col <= 3; col++) {
 
-        stumps[index++] =
-          new TreeStump(col * sx, row * sy, 120);
+      stumps[index] = new TreeStump(col * sx, row * sy, 120, index);
+index++;
 
       }
 
