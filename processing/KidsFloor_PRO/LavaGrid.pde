@@ -68,14 +68,17 @@ class LavaGrid {
 
   void update() {
 
-    if (millis() > nextChange) {
+  for (int x = 0; x < cols; x++) {
 
-      randomize();
+    for (int y = 0; y < rows; y++) {
+
+      tiles[x][y].update();
 
     }
 
   }
 
+}
   void render() {
 
     for (int x = 0; x < cols; x++) {
