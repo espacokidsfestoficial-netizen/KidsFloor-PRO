@@ -1,6 +1,7 @@
 class LavaGame extends InteractiveGame {
 
   LavaGrid grid;
+LavaBackground lava;
 
   LavaGame(){
 
@@ -8,17 +9,21 @@ class LavaGame extends InteractiveGame {
 
     grid=new LavaGrid();
 
+lava = new LavaBackground();
+
   }
 
   void update(){
 
     grid.update();
+lava.update();
+grid.update();
 
   }
 
   void render(){
 
-    background(20,20,30);
+    lava.render();
 
     grid.render();
 
