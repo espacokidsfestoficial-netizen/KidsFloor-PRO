@@ -61,74 +61,73 @@ startTime = millis();
 
   void update() {
 
-    for(AnswerPad op : options) {
+  if (gameOver) {
 
-      op.animScale = lerp(op.animScale, 1.0, 0.15);
+    if (keyPressed && key == ENTER) {
+
+      score = 0;
+      generator = new MathGenerator();
+      nextQuestion();
+      startTime = millis();
+      gameOver = false;
 
     }
 
-if (gameOver) return;
+    return;
 
-int elapsed = (millis() - startTime) / 1000;
+  }
 
-if (elapsed >= gameTime) {
+  for (AnswerPad op : options) {
 
-  gameOver = true;
-  return;
+    op.animScale = lerp(op.animScale, 1.0, 0.15);
 
-}
+  }
 
-    if (mousePressed && canAnswer) {
+  int elapsed = (millis() - startTime) / 1000;
 
-      for(AnswerPad op : options) {
+  if (elapsed >= gameTime) {
 
-        if (op.contains(mouseX, mouseY)) {
+    gameOver = true;
+    return;
 
-          op.animScale = 1.18;
+  }
 
-          if (op.value == question.answer) {
+  if (mousePressed && canAnswer) {
 
-            score++;
-if (score == 10) generator.nextLevel();
+    for (AnswerPad op : options) {
 
-if (score == 20) generator.nextLevel();
+      if (op.contains(mouseX, mouseY)) {
 
-          }
+        op.animScale = 1.18;
 
-          nextQuestion();
+        if (op.value == question.answer) {
 
-          canAnswer = false;
+          score++;
 
-          break;
+          if (score == 10) generator.nextLevel();
+          if (score == 20) generator.nextLevel();
 
         }
+
+        nextQuestion();
+
+        canAnswer = false;
+
+        break;
 
       }
 
     }
 
-if (!mousePressed) {
+  }
 
-  canAnswer = true;
+  if (!mousePressed) {
 
-}
+    canAnswer = true;
 
-if (gameOver && keyPressed && key == ENTER) {
-
-  score = 0;
-
-  generator = new MathGenerator();
-
-  nextQuestion();
-
-  startTime = millis();
-
-  gameOver = false;
+  }
 
 }
-
-} 
-
 void render() {
 
     background(25, 40, 80);
