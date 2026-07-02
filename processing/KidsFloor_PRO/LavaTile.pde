@@ -3,13 +3,9 @@ class LavaTile {
   float x, y;
   float w, h;
 
-  static final int SAFE = 0;
-  static final int WARNING = 1;
-  static final int LAVA = 2;
+  boolean safe = true;
 
-  int state = SAFE;
-
-  float shake = 0;
+  float pulse = random(TWO_PI);
 
   LavaTile(float x, float y, float w, float h) {
 
@@ -20,63 +16,61 @@ class LavaTile {
 
   }
 
-  void update() {
+  void render() {
 
-    if (state == WARNING) {
+    pulse += 0.05;
 
-      shake = random(-2, 2);
+    rectMode(CORNER);
+
+    noStroke();
+
+    if (safe) {
+
+      // Piso seguro
+      fill(70, 170, 255);
+      rect(x + 4, y + 4, w - 8, h - 8, 18);
+
+      // Brilho
+      fill(255, 60);
+      rect(x + 12, y + 12, w - 24, 16, 8);
+
+      // Borda
+      noFill();
+      stroke(255, 120);
+      strokeWeight(2);
+      rect(x + 4, y + 4, w - 8, h - 8, 18);
 
     } else {
 
-      shake = 0;
+      // Lava animada
+      float glow = 150 + sin(pulse) * 80;
+
+      fill(255, glow, 0);
+      rect(x + 2, y + 2, w - 4, h - 4, 18);
+
+      fill(255, 60, 0, 120);
+      rect(x + 10, y + 10, w - 20, h - 20, 14);
+
+      // Bolhas
+      noStroke();
+
+      fill(255, 220, 80, 140);
+
+      ellipse(
+        x + w * 0.35,
+        y + h * 0.40 + sin(frameCount * 0.10 + pulse) * 6,
+        10,
+        10
+      );
+
+      ellipse(
+        x + w * 0.70,
+        y + h * 0.65 + cos(frameCount * 0.12 + pulse) * 8,
+        14,
+        14
+      );
 
     }
-
-  }
-
-  void render() {
-
-    pushMatrix();
-
-    translate(shake, shake);
-
-    rectMode(CENTER);
-
-    stroke(30);
-
-    strokeWeight(3);
-
-    switch(state) {
-
-    case SAFE:
-
-      fill(80,170,255);
-
-      break;
-
-    case WARNING:
-
-      if ((frameCount/8)%2==0)
-
-        fill(255,220,80);
-
-      else
-
-        fill(255,120,40);
-
-      break;
-
-    case LAVA:
-
-      fill(255,80,20);
-
-      break;
-
-    }
-
-    rect(x,y,w,h,18);
-
-    popMatrix();
 
   }
 
