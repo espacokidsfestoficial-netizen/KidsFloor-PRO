@@ -166,8 +166,8 @@ void render() {
 
     }
 
-   hud.render(score, generator.level);
-  }
+  hud.render(score, generator.level);
+
 int remaining = max(0, gameTime - (millis() - startTime) / 1000);
 
 fill(255);
@@ -180,22 +180,28 @@ text("Tempo: " + remaining, width - 30, 40);
 
 if (gameOver) {
 
-  fill(0, 180);
+  fill(0,180);
+
   rectMode(CORNER);
-  rect(0, 0, width, height);
+
+  rect(0,0,width,height);
 
   fill(255);
 
   textAlign(CENTER);
 
   textSize(64);
-  text("FIM DE JOGO", width/2, height/2 - 70);
+
+  text("FIM DE JOGO", width/2, height/2-70);
 
   textSize(42);
+
   text("Pontuação: " + score, width/2, height/2);
 
   textSize(26);
-  text("Pressione ENTER para jogar novamente", width/2, height/2 + 70);
 
-}
+  text("Pressione ENTER para jogar novamente",
+       width/2,
+       height/2+70);
+
 }
