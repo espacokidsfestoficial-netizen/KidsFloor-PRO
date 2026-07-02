@@ -2,7 +2,7 @@ class MathGame extends InteractiveGame {
 
   MathGenerator generator;
   MathQuestion question;
-  MathOption[] options;
+  AnswerPad[] options;
   MathHUD hud;
 
   int score = 0;
@@ -19,14 +19,14 @@ boolean gameOver = false;
     generator = new MathGenerator();
     hud = new MathHUD();
 
-    options = new MathOption[4];
+   options = new AnswerPad[4];
 
-    float y = height * 0.72;
+float y = height * 0.73;
 
-    options[0] = new MathOption(width * 0.20, y, 120);
-    options[1] = new MathOption(width * 0.40, y, 120);
-    options[2] = new MathOption(width * 0.60, y, 120);
-    options[3] = new MathOption(width * 0.80, y, 120);
+options[0] = new AnswerPad(width*0.18,y,color(70,170,255));
+options[1] = new AnswerPad(width*0.39,y,color(255,90,90));
+options[2] = new AnswerPad(width*0.61,y,color(80,220,120));
+options[3] = new AnswerPad(width*0.82,y,color(255,190,60));
 
     nextQuestion();
 
@@ -61,7 +61,7 @@ startTime = millis();
 
   void update() {
 
-    for (MathOption op : options) {
+    for(AnswerPad op : options) {
 
       op.animScale = lerp(op.animScale, 1.0, 0.15);
 
@@ -80,7 +80,7 @@ if (elapsed >= gameTime) {
 
     if (mousePressed && canAnswer) {
 
-      for (MathOption op : options) {
+      for(AnswerPad op : options) {
 
         if (op.contains(mouseX, mouseY)) {
 
@@ -159,7 +159,7 @@ if (gameOver && keyPressed && key == ENTER) {
 
     text("Pise na resposta correta!", width / 2, 170);
 
-    for (MathOption op : options) {
+    for(AnswerPad op : options) {
 
       op.render();
 
