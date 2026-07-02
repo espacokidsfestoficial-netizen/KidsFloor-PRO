@@ -26,17 +26,7 @@ class LavaGrid {
         );
 
       }
-boolean isSafe(float px, float py) {
 
-  int col = int(px / (width / float(cols)));
-  int row = int(py / (height / float(rows)));
-
-  if (col < 0 || col >= cols) return false;
-  if (row < 0 || row >= rows) return false;
-
-  return tiles[col][row].safe;
-
-}
     }
 
     randomize();
@@ -55,7 +45,6 @@ boolean isSafe(float px, float py) {
 
     }
 
-    // aproximadamente 35% ficam seguros
     int safeCount = int(cols * rows * 0.35);
 
     while (safeCount > 0) {
@@ -78,17 +67,18 @@ boolean isSafe(float px, float py) {
 
   void update() {
 
-  for (int x = 0; x < cols; x++) {
+    for (int x = 0; x < cols; x++) {
 
-    for (int y = 0; y < rows; y++) {
+      for (int y = 0; y < rows; y++) {
 
-      tiles[x][y].update();
+        tiles[x][y].update();
+
+      }
 
     }
 
   }
 
-}
   void render() {
 
     for (int x = 0; x < cols; x++) {
@@ -103,15 +93,16 @@ boolean isSafe(float px, float py) {
 
   }
 
-}
-boolean isSafe(float px, float py) {
+  boolean isSafe(float px, float py) {
 
-  int col = int(px / (width / float(cols)));
-  int row = int(py / (height / float(rows)));
+    int col = int(px / (width / float(cols)));
+    int row = int(py / (height / float(rows)));
 
-  if (col < 0 || col >= cols) return false;
-  if (row < 0 || row >= rows) return false;
+    if (col < 0 || col >= cols) return false;
+    if (row < 0 || row >= rows) return false;
 
-  return tiles[col][row].safe;
+    return tiles[col][row].safe;
+
+  }
 
 }
