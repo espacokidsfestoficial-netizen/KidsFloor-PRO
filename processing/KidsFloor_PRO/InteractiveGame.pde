@@ -6,15 +6,6 @@ abstract class InteractiveGame {
 
     name = n;
 
-class LavaGame extends InteractiveGame {
-
-    LavaGame() {
-
-        super("Lava Escape");
-
-    }
-
-}
   }
 
   abstract void update();
