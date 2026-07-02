@@ -205,3 +205,4 @@ if (gameOver) {
        height/2+70);
 
 }
+}
