@@ -39,41 +39,22 @@ if (manager.state == 2 && player.alive) {
 
   }
 
-  void render(){
+  void render() {
 
-    lava.render();
+   ...
 
-    grid.render();
+   if (!player.alive) {
 
-player.render();
+      fill(0,180);
+      rectMode(CORNER);
+      rect(0,0,width,height);
 
-manager.renderHUD();
+      fill(255);
+      textAlign(CENTER);
+      textSize(70);
 
-    fill(255);
+      text("GAME OVER", width/2, height/2);
 
-    textAlign(CENTER);
-
-    textSize(40);
-
-    text("LAVA ESCAPE",width/2,50);
-
-  }
-
-}
-if (!player.alive) {
-
-  fill(0,180);
-
-  rectMode(CORNER);
-
-  rect(0,0,width,height);
-
-  fill(255);
-
-  textAlign(CENTER);
-
-  textSize(70);
-
-  text("GAME OVER", width/2, height/2);
+   }
 
 }
