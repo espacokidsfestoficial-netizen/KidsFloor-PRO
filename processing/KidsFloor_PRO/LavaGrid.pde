@@ -1,55 +1,92 @@
 class LavaGrid {
 
+  int cols = 8;
+  int rows = 5;
+
   LavaTile[][] tiles;
 
-  int cols = 8;
-  int rows = 6;
-
-  float tileSize = 110;
+  int nextChange;
 
   LavaGrid() {
 
     tiles = new LavaTile[cols][rows];
 
-    float startX = width/2 - (cols-1)*tileSize/2;
+    float w = width / float(cols);
+    float h = height / float(rows);
 
-    float startY = height/2 - (rows-1)*tileSize/2;
+    for (int x = 0; x < cols; x++) {
 
-    for(int y=0;y<rows;y++){
+      for (int y = 0; y < rows; y++) {
 
-      for(int x=0;x<cols;x++){
-
-        tiles[x][y]=new LavaTile(
-
-          startX+x*tileSize,
-
-          startY+y*tileSize,
-
-          95,
-
-          95
-
+        tiles[x][y] = new LavaTile(
+          x * w,
+          y * h,
+          w,
+          h
         );
 
       }
 
     }
 
-  }
-
-  void update(){
-
-    for(int y=0;y<rows;y++)
-      for(int x=0;x<cols;x++)
-        tiles[x][y].update();
+    randomize();
 
   }
 
-  void render(){
+  void randomize() {
 
-    for(int y=0;y<rows;y++)
-      for(int x=0;x<cols;x++)
+    for (int x = 0; x < cols; x++) {
+
+      for (int y = 0; y < rows; y++) {
+
+        tiles[x][y].safe = false;
+
+      }
+
+    }
+
+    // aproximadamente 35% ficam seguros
+    int safeCount = int(cols * rows * 0.35);
+
+    while (safeCount > 0) {
+
+      int x = int(random(cols));
+      int y = int(random(rows));
+
+      if (!tiles[x][y].safe) {
+
+        tiles[x][y].safe = true;
+        safeCount--;
+
+      }
+
+    }
+
+    nextChange = millis() + 2500;
+
+  }
+
+  void update() {
+
+    if (millis() > nextChange) {
+
+      randomize();
+
+    }
+
+  }
+
+  void render() {
+
+    for (int x = 0; x < cols; x++) {
+
+      for (int y = 0; y < rows; y++) {
+
         tiles[x][y].render();
+
+      }
+
+    }
 
   }
 
