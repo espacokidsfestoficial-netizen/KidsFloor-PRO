@@ -107,13 +107,11 @@ if (score == 20) generator.nextLevel();
 
     }
 
-    if (!mousePressed) {
+if (!mousePressed) {
 
-      canAnswer = true;
+  canAnswer = true;
 
-    }
-
-  }
+}
 
 if (gameOver && keyPressed && key == ENTER) {
 
@@ -128,7 +126,10 @@ if (gameOver && keyPressed && key == ENTER) {
   gameOver = false;
 
 }
-  void render() {
+
+} 
+
+void render() {
 
     background(25, 40, 80);
 
