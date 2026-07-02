@@ -6,6 +6,9 @@ class MathGame extends InteractiveGame {
   MathHUD hud;
 
   int score = 0;
+int gameTime = 120;      // segundos
+int startTime;
+boolean gameOver = false;
 
   boolean canAnswer = true;
 
@@ -27,6 +30,7 @@ class MathGame extends InteractiveGame {
 
     nextQuestion();
 
+startTime = millis();
   }
 
   void nextQuestion() {
@@ -62,6 +66,17 @@ class MathGame extends InteractiveGame {
       op.animScale = lerp(op.animScale, 1.0, 0.15);
 
     }
+
+if (gameOver) return;
+
+int elapsed = (millis() - startTime) / 1000;
+
+if (elapsed >= gameTime) {
+
+  gameOver = true;
+  return;
+
+}
 
     if (mousePressed && canAnswer) {
 
@@ -100,6 +115,19 @@ if (score == 20) generator.nextLevel();
 
   }
 
+if (gameOver && keyPressed && key == ENTER) {
+
+  score = 0;
+
+  generator = new MathGenerator();
+
+  nextQuestion();
+
+  startTime = millis();
+
+  gameOver = false;
+
+}
   void render() {
 
     background(25, 40, 80);
@@ -139,5 +167,34 @@ if (score == 20) generator.nextLevel();
 
    hud.render(score, generator.level);
   }
+int remaining = max(0, gameTime - (millis() - startTime) / 1000);
 
+fill(255);
+
+textAlign(RIGHT);
+
+textSize(32);
+
+text("Tempo: " + remaining, width - 30, 40);
+
+if (gameOver) {
+
+  fill(0, 180);
+  rectMode(CORNER);
+  rect(0, 0, width, height);
+
+  fill(255);
+
+  textAlign(CENTER);
+
+  textSize(64);
+  text("FIM DE JOGO", width/2, height/2 - 70);
+
+  textSize(42);
+  text("Pontuação: " + score, width/2, height/2);
+
+  textSize(26);
+  text("Pressione ENTER para jogar novamente", width/2, height/2 + 70);
+
+}
 }
