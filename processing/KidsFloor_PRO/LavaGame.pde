@@ -2,6 +2,7 @@ class LavaGame extends InteractiveGame {
 
   LavaGrid grid;
 LavaBackground lava;
+LavaManager manager;
 
   LavaGame(){
 
@@ -10,13 +11,16 @@ LavaBackground lava;
     grid=new LavaGrid();
 
 lava = new LavaBackground();
+manager = new LavaManager(grid);
 
   }
 
   void update(){
 
-    grid.update();
 lava.update();
+
+manager.update();
+
 grid.update();
 
   }
@@ -26,6 +30,8 @@ grid.update();
     lava.render();
 
     grid.render();
+
+manager.renderHUD();
 
     fill(255);
 
