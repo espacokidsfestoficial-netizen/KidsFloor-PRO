@@ -26,7 +26,17 @@ class LavaGrid {
         );
 
       }
+boolean isSafe(float px, float py) {
 
+  int col = int(px / (width / float(cols)));
+  int row = int(py / (height / float(rows)));
+
+  if (col < 0 || col >= cols) return false;
+  if (row < 0 || row >= rows) return false;
+
+  return tiles[col][row].safe;
+
+}
     }
 
     randomize();
