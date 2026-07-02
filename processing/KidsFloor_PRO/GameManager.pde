@@ -22,6 +22,7 @@ static final int FOREST = 7;
     games.add(new AquariumGame());     // 6
     games.add(new ForestGame());       // 7
     games.add(new MathGame());         // 8
+    games.add(new LavaGame());         // 9
 
   }
 
