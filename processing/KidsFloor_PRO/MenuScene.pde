@@ -1,6 +1,6 @@
 class MenuScene {
 
- String[] games = {
+String[] games = {
 
   "Interactive Water",
   "Fire Spirit",
@@ -10,7 +10,7 @@ class MenuScene {
   "Tic Tac Toe",
   "Aquarium Premium",
   "Forest Stomp",
-  "Math Adventure"
+  "Math Adventure",
   "Lava Escape"
 
 };
