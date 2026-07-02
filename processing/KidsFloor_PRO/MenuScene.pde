@@ -11,6 +11,7 @@ class MenuScene {
   "Aquarium Premium",
   "Forest Stomp",
   "Math Adventure"
+  "Lava Escape"
 
 };
 
