@@ -65,10 +65,29 @@ class LavaManager {
 
         countdown--;
 
+for (int x = 0; x < grid.cols; x++) {
+
+  for (int y = 0; y < grid.rows; y++) {
+
+    grid.tiles[x][y].warning = true;
+
+  }
+
+}
+
         timer = millis() + 1000;
 
         if (countdown <= 0) {
 
+for (int x = 0; x < grid.cols; x++) {
+
+  for (int y = 0; y < grid.rows; y++) {
+
+    grid.tiles[x][y].warning = false;
+
+  }
+
+}
           state = 2;
 
           timer = millis() + 4000;
