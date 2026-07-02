@@ -3,6 +3,7 @@ class LavaGame extends InteractiveGame {
   LavaGrid grid;
 LavaBackground lava;
 LavaManager manager;
+LavaPlayer player;
 
   LavaGame(){
 
@@ -12,6 +13,7 @@ LavaManager manager;
 
 lava = new LavaBackground();
 manager = new LavaManager(grid);
+player = new LavaPlayer();
 
   }
 
@@ -23,6 +25,18 @@ manager.update();
 
 grid.update();
 
+player.update();
+
+if (manager.state == 2 && player.alive) {
+
+  if (!grid.isSafe(player.x, player.y)) {
+
+    player.alive = false;
+
+  }
+
+}
+
   }
 
   void render(){
@@ -30,6 +44,8 @@ grid.update();
     lava.render();
 
     grid.render();
+
+player.render();
 
 manager.renderHUD();
 
@@ -42,5 +58,22 @@ manager.renderHUD();
     text("LAVA ESCAPE",width/2,50);
 
   }
+
+}
+if (!player.alive) {
+
+  fill(0,180);
+
+  rectMode(CORNER);
+
+  rect(0,0,width,height);
+
+  fill(255);
+
+  textAlign(CENTER);
+
+  textSize(70);
+
+  text("GAME OVER", width/2, height/2);
 
 }
